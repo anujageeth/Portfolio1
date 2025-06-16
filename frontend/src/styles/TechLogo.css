@@ -1,0 +1,77 @@
+/* Tech logo styling */
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 41, 59, 0.7);
+  color: #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.tech-tag.tech-icon {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 6px;
+  height: 34px;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tech-tag.tech-icon svg {
+  font-size: 1.3rem;
+  color: #a5b4fc;
+  min-width: 22px; /* Ensure icon has minimum width */
+}
+
+/* Hide tech name by default */
+.tech-tag.tech-icon .tech-name {
+  display: none;
+  margin-left: 6px;
+  font-size: 0.8rem;
+  color: #e2e8f0;
+}
+
+/* Show tech name on hover */
+.tech-tag.tech-icon:hover {
+  width: auto;
+  background: rgba(30, 41, 59, 0.95);
+  box-shadow: 
+    0 4px 15px rgba(139, 92, 246, 0.4),
+    0 0 8px rgba(139, 92, 246, 0.2);
+  transform: translateY(0px);
+}
+
+.tech-tag.tech-icon:hover .tech-name {
+  display: inline;
+}
+
+/* Style for +more tag */
+.tech-more {
+  background: rgba(99, 102, 241, 0.7);
+  font-size: 0.75rem;
+  height: 34px;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.tech-more:hover {
+  background: rgba(99, 102, 241, 0.85);
+  transform: translateY(0px);
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+}
