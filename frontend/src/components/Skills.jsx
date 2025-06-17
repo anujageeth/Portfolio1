@@ -35,14 +35,6 @@ const Skills = () => {
             ]
         },
         {
-            name: "DBMS",
-            skills: [
-                { name: "MongoDB", icon: <SiMongodb /> },
-                // { name: "MySQL", icon: <SiMysql /> },
-                { name: "SQL", icon: <FaDatabase /> }
-            ]
-        },
-        {
             name: "Software Development",
             skills: [
                 { name: "OOP", icon: null },
@@ -54,11 +46,19 @@ const Skills = () => {
             ]
         },
         {
+            name: "DBMS",
+            skills: [
+                { name: "MongoDB", icon: <SiMongodb /> },
+                // { name: "MySQL", icon: <SiMysql /> },
+                { name: "SQL", icon: <FaDatabase /> }
+            ]
+        },
+        {
             name: "Machine Learning",
             skills: [
                 { name: "Pandas", icon: <SiPandas /> },
                 { name: "Numpy", icon: <SiNumpy /> },
-                { name: "Scikit-learn", icon: <SiScikitlearn /> }
+                // { name: "Scikit-learn", icon: <SiScikitlearn /> }
             ]
         },
         {

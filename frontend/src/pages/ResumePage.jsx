@@ -1,11 +1,11 @@
 import React from 'react';
-import Projects from '../components/Projects';
-import '../styles/ProjectsPage.css';
+import Resume from '../components/Resume';
+import '../styles/AboutPage.css';
 
 const ResumePage = () => {
   return (
-    <div className="projects-page">
-      <Projects />
+    <div className="resume-page">
+      <Resume />
     </div>
   );
 };
