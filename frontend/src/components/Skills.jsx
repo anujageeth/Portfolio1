@@ -86,6 +86,9 @@ const Skills = () => {
         <>
             <section id="skills">
                 <h2>Technical Skills</h2>
+                <p className="section-intro">
+                    Here are some of the technologies and tools I work with. I am always eager to learn new skills and improve my expertise.
+                </p>
                 <div className="skills-container">
                     {techSkillCategories.map((category, categoryIndex) => (
                         <div key={categoryIndex} className="skill-category">

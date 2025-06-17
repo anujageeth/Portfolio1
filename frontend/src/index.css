@@ -34,7 +34,7 @@ html, body {
 /* Global Button Styles */
 .btn1 {
   display: inline-block;
-  background: rgba(139, 92, 246, 0.7);
+  background: linear-gradient(135deg, #7683f9, #7683f9, #7683f9);
   color: white;
   padding: 12px 28px;
   height: 48px;
@@ -56,7 +56,7 @@ html, body {
 }
 
 .btn1:hover {
-  background: rgba(139, 92, 246, 0.9);
+  background: linear-gradient(135deg, #7683f9, #394cff);
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
 }

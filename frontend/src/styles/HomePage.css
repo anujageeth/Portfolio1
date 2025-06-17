@@ -3,6 +3,15 @@
   scroll-behavior: smooth;
 }
 
+#home-btn {
+  width: 85vw;
+  background: linear-gradient(180deg, #ffffff00 0%, #ffffff28 100%);
+  border: none;
+  border-radius: 0px 0px 50px 50px;
+  box-shadow: none;
+  font-weight: bold;
+}
+
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;

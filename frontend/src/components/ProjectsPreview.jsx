@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TechLogo from './TechLogo';
 import ProjectModal from './ProjectModal';
+import { FaArrowRight } from 'react-icons/fa';
 import '../styles/Projects.css';
+import '../styles/SkillsPreview.css';
 
 // List of technologies that have logos defined in TechLogo component
 const technologiesWithLogos = [
@@ -10,12 +13,13 @@ const technologiesWithLogos = [
   'HTML', 'CSS', 'Git', 'Python', 'C++'
 ];
 
-const Projects = () => {
+const ProjectsPreview = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
     const projectRefs = useRef({});
+    const navigate = useNavigate();
 
     // Initialize project refs as an empty object
     useEffect(() => {
@@ -155,58 +159,6 @@ const Projects = () => {
             ],
             link: "https://github.com/anujageeth/WeatherPrediction1",
             demoLink: ""
-        },
-        {
-            id: 4,
-            title: "DevOps Project",
-            description: "A Social Media Web Application while integrating key DevOps practices and tools",
-            longDescription: "This project is implemented to build a Social Media Web Application while integrating key DevOps practices and tools such as Docker, Jenkins, Terraform, Ansible, and AWS. The goal is not only to develop the application but also to demonstrate an end-to-end DevOps pipeline for deployment and delivery.",
-            image: "https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VhdGhlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-            technologies: ["Docker", "Jenkins", "AWS", "Terraform", "Ansible", "React", "Node.js", "MongoDB"],
-            features: [
-                "🛠 Pipeline Steps:",
-                "• Jenkins watches for changes in the main branch on GitHub.",
-                "• On change:",
-                "-- Installs dependencies with npm install (for both frontend and backend).",
-                "-- Builds the frontend using npm run build.",
-                "• Builds Docker images for frontend and backend using their respective Dockerfile.",
-                "• Uses docker-compose.yml to manage services (e.g., MongoDB).",
-                "• Pushes images to Docker Hub.",
-                "🔄 Jenkins Pipeline Stages",
-                "✅ Stage 1: Checkout Code",
-                "• Pulls the latest code from GitHub repository.",
-                "🧱 Stage 2: Build Frontend",
-                "• Installs frontend dependencies.",
-                "• Builds production-ready React frontend (npm run build).",
-                "🧱 Stage 3: Build Backend",
-                "• Installs backend dependencies (npm install).",
-                "🐋 Stage 4: Dockerize and Push Frontend",
-                "• Builds Docker image for frontend.",
-                "• Pushes it to Docker Hub.",
-                "🐋 Stage 5: Dockerize and Push Backend",
-                "• Builds Docker image for backend.",
-                "• Pushes it to Docker Hub."
-            ],
-            link: "https://github.com/anujageeth/DevOps1",
-            demoLink: ""
-        },
-        {
-            id: 5,
-            title: "Machine Learning Classifier",
-            description: "Image classification tool using machine learning to identify objects in photos.",
-            longDescription: "This machine learning application uses computer vision techniques to classify and identify objects in images. Built with Python for the backend ML processing and React for the user interface, it leverages pre-trained models like ResNet and YOLO for fast and accurate image classification. Users can upload images or provide URLs for analysis, and the system returns object classifications with confidence scores. The application also includes a React-based dashboard for visualizing classification results and historical data.",
-            image: "https://images.unsplash.com/photo-1534366428-e54c1db0bed4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bWFjaGluZSUyMGxlYXJuaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-            technologies: ["Python", "React", "MongoDB"],
-            features: [
-                "Image classification with high accuracy",
-                "Multiple ML models for different use cases",
-                "Batch processing for multiple images",
-                "Result history and data visualization",
-                "API integration options for developers",
-                "Mobile-friendly interface"
-            ],
-            link: "https://github.com/yourusername/ml-classifier",
-            demoLink: "https://yourdemo.com"
         }
     ];
 
@@ -214,12 +166,13 @@ const Projects = () => {
         const fetchProjects = async () => {
             try {
                 const response = await axios.get('/api/projects');
-                setProjects(response.data);
+                // Get only the first 3 projects
+                setProjects(response.data.slice(0, 3));
                 setLoading(false);
             } catch (error) {
                 // console.error('Error fetching projects:', error);
                 setTimeout(() => {
-                    setProjects(fallbackProjects); // Use fallback if API fails
+                    setProjects(fallbackProjects.slice(0, 3)); // Use first 3 fallback projects
                     setLoading(false);
                 }, 1500); // Add a small delay to show loading state
             }
@@ -252,9 +205,13 @@ const Projects = () => {
         }
     };
 
+    const handleViewAllProjects = () => {
+        navigate('/projects');
+    }
+
     // Generate skeleton loading cards
     const renderSkeletonCards = () => {
-        return Array(6).fill().map((_, index) => (
+        return Array(3).fill().map((_, index) => (
             <div key={`skeleton-${index}`} className="project-item skeleton-card">
                 <div className="skeleton-image"></div>
                 <div className="skeleton-content">
@@ -273,14 +230,17 @@ const Projects = () => {
     };
 
     return (
-        <section id="projects">
-            <h2>Projects</h2>
-            <p className="section-intro">
-                Check out my latest projects, showcasing my skills in web development, machine learning, and more.
-            </p>
+        <section id="linkedin-posts">
+            <div className="container">
+                <h2>Featured Projects</h2>
+                <p className="section-intro">
+                    Check out my latest projects, showcasing my skills in web development, machine learning, and more.
+                </p>
+            </div>
+            
             {error && <div className="error-message">{error}</div>}
             
-            <div className="project-list">
+            <div className="project-list preview-project-list">
                 {loading ? renderSkeletonCards() : (
                     projects.map(project => (
                         <div 
@@ -321,6 +281,12 @@ const Projects = () => {
                 )}
             </div>
 
+            <div className="view-all-container">
+                <button className='btn1' id='home-btn' onClick={handleViewAllProjects}>
+                    View all projects
+                </button>
+            </div>
+
             {/* Modal popup when a project is selected */}
             {selectedProject && (
                 <ProjectModal 
@@ -332,4 +298,4 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+export default ProjectsPreview;

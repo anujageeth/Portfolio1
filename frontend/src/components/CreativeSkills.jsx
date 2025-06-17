@@ -59,6 +59,9 @@ const CreativeSkills = () => {
         <>
             <section id="skills">
                 <h2>Creative Skills</h2>
+                <p className="section-intro">
+                    In addition to my technical background, I'm deeply passionate about creative expression through visual media.
+                </p>
                 <div className="skills-container">
                     {creativeSkillCategories.map((category, categoryIndex) => (
                         <div key={categoryIndex} className="skill-category">

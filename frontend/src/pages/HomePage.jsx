@@ -1,8 +1,8 @@
 import React from 'react';
 import Hero from '../components/Hero';
 import About from '../components/About';
-import Projects from '../components/Projects';
-import Skills from '../components/Skills';
+import SkillsPreview from '../components/SkillsPreview';
+import ProjectsPreview from '../components/ProjectsPreview';
 import LinkedInPosts from '../components/LinkedInPosts';
 import '../styles/HomePage.css';
 
@@ -11,9 +11,9 @@ const HomePage = () => {
     <div className="home">
       <Hero />
       <About />
-      <Skills />
+      <SkillsPreview />
       <LinkedInPosts />
-      <Projects />
+      <ProjectsPreview />
     </div>
   );
 };

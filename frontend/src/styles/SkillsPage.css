@@ -1,0 +1,4 @@
+.skills-page {
+  padding-top: 80px; /* Add space for fixed header */
+  scroll-behavior: smooth;
+}
