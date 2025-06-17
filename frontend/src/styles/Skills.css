@@ -1,6 +1,6 @@
 #skills {
   padding: 80px 5%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -15,9 +15,10 @@
   font-weight: 700;
 }
 
+/* Updated grid layout for exactly 3 columns */
 .skills-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -32,6 +33,9 @@
   transition: all 0.3s ease;
   transform-style: preserve-3d;
   position: relative;
+  height: 100%; /* Ensure consistent height */
+  display: flex;
+  flex-direction: column;
 }
 
 .skill-category:hover {
@@ -113,6 +117,13 @@
   justify-content: center;
   color: #a5b4fc;
   font-size: 1.1rem;
+}
+
+/* Updated responsive breakpoints */
+@media (max-width: 1200px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
