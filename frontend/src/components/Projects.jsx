@@ -257,6 +257,7 @@ const Projects = () => {
                     <div className="skeleton-tech"></div>
                     <div className="skeleton-tech"></div>
                     <div className="skeleton-tech"></div>
+                    <div className="skeleton-tech"></div>
                 </div>
             </div>
         ));

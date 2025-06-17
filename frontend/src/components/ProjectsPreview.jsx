@@ -213,6 +213,7 @@ const ProjectsPreview = () => {
                     <div className="skeleton-tech"></div>
                     <div className="skeleton-tech"></div>
                     <div className="skeleton-tech"></div>
+                    <div className="skeleton-tech"></div>
                 </div>
             </div>
         ));
