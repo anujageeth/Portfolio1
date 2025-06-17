@@ -42,7 +42,7 @@
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@
 }
 
 .project-item:hover {
-  transform: translateY(-8px) rotateX(5deg) rotateY(-5deg);
+  transform: translateY(-16px) rotateX(10deg) rotateY(-10deg);
   box-shadow: 
     0 15px 35px rgba(99, 102, 241, 0.4),
     0 0 15px rgba(99, 102, 241, 0.2);
@@ -182,7 +182,7 @@
   z-index: 5;
   gap: 8px;
   flex-direction: row-reverse;
-  transform: translateZ(20px);
+  transform: translateZ(0px);
 }
 
 .project-tech-overlay .tech-tag.tech-icon {
@@ -196,7 +196,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 17px;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -209,7 +209,7 @@
   box-shadow: 
     0 4px 15px rgba(139, 92, 246, 0.4),
     0 0 8px rgba(139, 92, 246, 0.2);
-  transform: translateY(-3px) translateZ(5px);
+  transform: translateY(0px) translateZ(5px);
 }
 
 /* Add subtle interactive movement on tech tag hover */
@@ -219,6 +219,113 @@
 
 .tech-icon-wrapper:hover {
   transform: translateZ(10px);
+}
+
+/* Skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-card {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  overflow: hidden;
+  height: 100%;
+  pointer-events: none;
+}
+
+.skeleton-image {
+  height: 200px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-content {
+  padding: 25px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 70%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-text:last-of-type {
+  width: 80%;
+}
+
+.skeleton-button {
+  height: 38px;
+  width: 120px;
+  margin-top: 25px;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.3) 25%,
+    rgba(99, 102, 241, 0.4) 37%,
+    rgba(99, 102, 241, 0.3) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-tech-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 8px;
+  flex-direction: row-reverse;
+}
+
+.skeleton-tech {
+  height: 34px;
+  width: 34px;
+  border-radius: 17px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
 }
 
 @media (max-width: 768px) {

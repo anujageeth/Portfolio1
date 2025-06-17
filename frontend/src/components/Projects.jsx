@@ -94,8 +94,8 @@ const Projects = () => {
                 "🧭 Responsive UI with Side Navigation",
                 "📁 User Authentication & Session Management"
             ],
-            link: "https://github.com/yourusername/portfolio",
-            demoLink: "https://yourdemo.com"
+            link: "https://github.com/anujageeth/LabMS3",
+            demoLink: ""
         },
         {
             id: 2,
@@ -134,8 +134,8 @@ const Projects = () => {
                 "• Clean, intuitive interface",
                 "• Optimized for all devices"
             ],
-            link: "https://github.com/yourusername/ecommerce",
-            demoLink: "https://yourdemo.com"
+            link: "https://github.com/anujageeth/BlogSite1",
+            demoLink: "https://blog-site1-beta.vercel.app/"
         },
         {
             id: 3,
@@ -158,21 +158,37 @@ const Projects = () => {
         },
         {
             id: 4,
-            title: "Weather Dashboard",
-            description: "Real-time weather dashboard that displays forecasts and historical weather data.",
-            longDescription: "A weather dashboard application that provides real-time weather updates and forecasts for any location worldwide. Built with JavaScript, HTML, and CSS, this app integrates with the OpenWeatherMap API to fetch current conditions, hourly forecasts, and 7-day predictions. Users can save favorite locations, view historical weather data, and receive weather alerts. The interface is designed to be clean, informative, and accessible on both desktop and mobile devices.",
+            title: "DevOps Project",
+            description: "A Social Media Web Application while integrating key DevOps practices and tools",
+            longDescription: "This project is implemented to build a Social Media Web Application while integrating key DevOps practices and tools such as Docker, Jenkins, Terraform, Ansible, and AWS. The goal is not only to develop the application but also to demonstrate an end-to-end DevOps pipeline for deployment and delivery.",
             image: "https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VhdGhlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-            technologies: ["JavaScript", "HTML", "CSS"],
+            technologies: ["Docker", "Jenkins", "AWS", "Terraform", "Ansible", "React", "Node.js", "MongoDB"],
             features: [
-                "Current weather conditions for any location",
-                "Hourly and 7-day weather forecasts",
-                "Interactive weather maps",
-                "Location search and favorites",
-                "Historical weather data comparison",
-                "Severe weather alerts and notifications"
+                "🛠 Pipeline Steps:",
+                "• Jenkins watches for changes in the main branch on GitHub.",
+                "• On change:",
+                "-- Installs dependencies with npm install (for both frontend and backend).",
+                "-- Builds the frontend using npm run build.",
+                "• Builds Docker images for frontend and backend using their respective Dockerfile.",
+                "• Uses docker-compose.yml to manage services (e.g., MongoDB).",
+                "• Pushes images to Docker Hub.",
+                "🔄 Jenkins Pipeline Stages",
+                "✅ Stage 1: Checkout Code",
+                "• Pulls the latest code from GitHub repository.",
+                "🧱 Stage 2: Build Frontend",
+                "• Installs frontend dependencies.",
+                "• Builds production-ready React frontend (npm run build).",
+                "🧱 Stage 3: Build Backend",
+                "• Installs backend dependencies (npm install).",
+                "🐋 Stage 4: Dockerize and Push Frontend",
+                "• Builds Docker image for frontend.",
+                "• Pushes it to Docker Hub.",
+                "🐋 Stage 5: Dockerize and Push Backend",
+                "• Builds Docker image for backend.",
+                "• Pushes it to Docker Hub."
             ],
-            link: "https://github.com/yourusername/weatherapp",
-            demoLink: "https://yourdemo.com"
+            link: "https://github.com/anujageeth/DevOps1",
+            demoLink: ""
         },
         {
             id: 5,
@@ -202,9 +218,10 @@ const Projects = () => {
                 setLoading(false);
             } catch (error) {
                 // console.error('Error fetching projects:', error);
-                setProjects(fallbackProjects); // Use fallback if API fails
-                // setError('Failed to fetch projects from server. Displaying sample projects instead.');
-                setLoading(false);
+                setTimeout(() => {
+                    setProjects(fallbackProjects); // Use fallback if API fails
+                    setLoading(false);
+                }, 1500); // Add a small delay to show loading state
             }
         };
 
@@ -235,51 +252,70 @@ const Projects = () => {
         }
     };
 
-    if (loading) {
-        return <div className="loading">Loading projects...</div>;
-    }
+    // Generate skeleton loading cards
+    const renderSkeletonCards = () => {
+        return Array(6).fill().map((_, index) => (
+            <div key={`skeleton-${index}`} className="project-item skeleton-card">
+                <div className="skeleton-image"></div>
+                <div className="skeleton-content">
+                    <div className="skeleton-title"></div>
+                    <div className="skeleton-text"></div>
+                    <div className="skeleton-text"></div>
+                    <div className="skeleton-button"></div>
+                </div>
+                <div className="skeleton-tech-overlay">
+                    <div className="skeleton-tech"></div>
+                    <div className="skeleton-tech"></div>
+                    <div className="skeleton-tech"></div>
+                </div>
+            </div>
+        ));
+    };
 
     return (
         <section id="projects">
             <h2>Projects</h2>
             {error && <div className="error-message">{error}</div>}
+            
             <div className="project-list">
-                {projects.map(project => (
-                    <div 
-                        key={project.id} 
-                        className="project-item" 
-                        ref={(el) => setProjectRef(el, project.id)}
-                    >
-                        <div className="project-image">
-                            <img src={project.image} alt={project.title} />
-                            
-                            {/* Tech logos overlay */}
-                            <div className="project-tech-overlay">
-                                {project.technologies.length > getDisplayTechnologies(project.technologies).length && (
-                                    <span className="tech-tag tech-more">
-                                        +{project.technologies.length - getDisplayTechnologies(project.technologies).length}
-                                    </span>
-                                )}
-                                
-                                {getDisplayTechnologies(project.technologies).map((tech, index) => (
-                                    <div key={index} className="tech-icon-wrapper">
-                                        <TechLogo tech={tech} />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        
-                        <h3>{project.title}</h3>
-                        <p>{project.description}</p>
-                        
-                        <button 
-                            className="view-project-btn" 
-                            onClick={() => handleViewProject(project)}
+                {loading ? renderSkeletonCards() : (
+                    projects.map(project => (
+                        <div 
+                            key={project.id} 
+                            className="project-item" 
+                            ref={(el) => setProjectRef(el, project.id)}
                         >
-                            View Project
-                        </button>
-                    </div>
-                ))}
+                            <div className="project-image">
+                                <img src={project.image} alt={project.title} />
+                                
+                                {/* Tech logos overlay */}
+                                <div className="project-tech-overlay">
+                                    {project.technologies.length > getDisplayTechnologies(project.technologies).length && (
+                                        <span className="tech-tag tech-more">
+                                            +{project.technologies.length - getDisplayTechnologies(project.technologies).length}
+                                        </span>
+                                    )}
+                                    
+                                    {getDisplayTechnologies(project.technologies).map((tech, index) => (
+                                        <div key={index} className="tech-icon-wrapper">
+                                            <TechLogo tech={tech} />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <h3>{project.title}</h3>
+                            <p>{project.description}</p>
+                            
+                            <button 
+                                className="view-project-btn" 
+                                onClick={() => handleViewProject(project)}
+                            >
+                                View Project
+                            </button>
+                        </div>
+                    ))
+                )}
             </div>
 
             {/* Modal popup when a project is selected */}

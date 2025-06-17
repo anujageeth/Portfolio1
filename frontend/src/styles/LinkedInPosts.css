@@ -98,50 +98,148 @@
   border-radius: 20px;
 }
 
-/* Loading spinner */
-.posts-loading {
-  display: flex;
-  flex-direction: column;
+.linkedin-cta {
   align-items: center;
   justify-content: center;
-  min-height: 300px;
-  color: #a5b4fc;
-}
-
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  border-top-color: rgba(139, 92, 246, 1);
-  animation: spin 1s ease-in-out infinite;
-  margin-bottom: 15px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* LinkedIn CTA section */
-.linkedin-cta {
-  margin-top: 60px;
   text-align: center;
 }
 
 .linkedin-cta p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  color: #e2e8f0;
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-.linkedin-btn {
-  background: rgba(10, 102, 194, 0.7); /* LinkedIn blue */
-  border-color: rgba(10, 102, 194, 0.4);
+/* LinkedIn skeleton loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-.linkedin-btn:hover {
-  background: rgba(10, 102, 194, 0.9);
-  box-shadow: 0 8px 25px rgba(10, 102, 194, 0.5);
+.skeleton-linkedin-post {
+  background: rgba(15, 23, 42, 0.4);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skeleton-linkedin-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skeleton-linkedin-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-linkedin-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.skeleton-linkedin-name {
+  height: 16px;
+  width: 150px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-linkedin-title {
+  height: 12px;
+  width: 180px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-linkedin-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-linkedin-text {
+  height: 14px;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeleton-linkedin-image {
+  height: 200px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  margin: 10px 0;
+}
+
+.skeleton-linkedin-footer {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.skeleton-linkedin-actions {
+  height: 30px;
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Remove old loading spinner as we're using skeleton loading now */
+.posts-loading {
+  display: none;
 }
 
 /* Responsive adjustments */

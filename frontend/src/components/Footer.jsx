@@ -8,22 +8,22 @@ const Footer = () => {
             <div className="footer-content">
                 <p>&copy; {new Date().getFullYear()} Anuja Geeth</p>
                 <div className="social-links">
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <a href="https://github.com/anujageeth" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <FaGithub />
                     </a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/anujageeth" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <FaLinkedinIn />
                     </a>
-                    <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <a href="https://facebook.com/anujageeth" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <FaFacebookF />
                     </a>
-                    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <a href="https://instagram.com/anuja_geeth" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <FaInstagram />
                     </a>
-                    <a href="https://youtube.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <a href="https://youtube.com/@AnujaVideos" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                         <FaYoutube />
                     </a>
-                    <a href="https://tiktok.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                    <a href="https://tiktok.com/anuja_geeth" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                         <FaTiktok />
                     </a>
                 </div>

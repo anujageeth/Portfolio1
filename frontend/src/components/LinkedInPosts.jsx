@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { FaLinkedinIn } from 'react-icons/fa';
 import '../styles/LinkedInPosts.css';
 
 const LinkedInPosts = () => {
@@ -23,9 +22,9 @@ const LinkedInPosts = () => {
     }
   };
 
-    const handleLinkedInClick = () => {
-        window.open('https://www.linkedin.com/in/anujageeth', '_blank');
-    };
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/in/anujageeth', '_blank');
+  };
 
   // Track loading state
   useEffect(() => {
@@ -37,6 +36,33 @@ const LinkedInPosts = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Render skeleton loading cards
+  const renderSkeletonCards = () => {
+    return Array(3).fill().map((_, index) => (
+      <div key={`linkedin-skeleton-${index}`} className="linkedin-post-wrapper">
+        <div className="linkedin-post skeleton-linkedin-post">
+          <div className="skeleton-linkedin-header">
+            <div className="skeleton-linkedin-avatar"></div>
+            <div className="skeleton-linkedin-info">
+              <div className="skeleton-linkedin-name"></div>
+              <div className="skeleton-linkedin-title"></div>
+            </div>
+          </div>
+          <div className="skeleton-linkedin-content">
+            <div className="skeleton-linkedin-text"></div>
+            <div className="skeleton-linkedin-text"></div>
+            <div className="skeleton-linkedin-text"></div>
+            <div className="skeleton-linkedin-text" style={{ width: '70%' }}></div>
+          </div>
+          <div className="skeleton-linkedin-image"></div>
+          <div className="skeleton-linkedin-footer">
+            <div className="skeleton-linkedin-actions"></div>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <section id="linkedin-posts">
       <div className="container">
@@ -45,42 +71,29 @@ const LinkedInPosts = () => {
           Check out my latest articles, updates, and thoughts on LinkedIn
         </p>
         
-        {loading && (
-          <div className="posts-loading">
-            <div className="loading-spinner"></div>
-            <p>Loading LinkedIn posts...</p>
-          </div>
-        )}
-        
-        <div className={`linkedin-posts-container ${loading ? 'loading' : 'loaded'}`}>
-          {linkedInPosts.map((postUrl, index) => (
-            <div key={index} className="linkedin-post-wrapper">
-              <div className="linkedin-post">
-                <iframe 
-                  src={postUrl} 
-                  height="542" 
-                  width="504" 
-                  frameBorder="0" 
-                  allowFullScreen={true} 
-                  title={`LinkedIn Embedded Post ${index + 1}`}
-                  onLoad={handleIframeLoad}
-                ></iframe>
+        <div className="linkedin-posts-container loaded">
+          {loading ? renderSkeletonCards() : (
+            linkedInPosts.map((postUrl, index) => (
+              <div key={index} className="linkedin-post-wrapper">
+                <div className="linkedin-post">
+                  <iframe 
+                    src={postUrl} 
+                    height="542" 
+                    width="504" 
+                    frameBorder="0" 
+                    allowFullScreen={true} 
+                    title={`LinkedIn Embedded Post ${index + 1}`}
+                    onLoad={handleIframeLoad}
+                  ></iframe>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         <div className="linkedin-cta">
           <p>Want to see more?</p>
           <button onClick={handleLinkedInClick} className="btn1">Connect with me on LinkedIn!</button>
-          {/* <a 
-            href="https://www.linkedin.com/in/your-linkedin-profile/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn linkedin-btn"
-          >
-            Visit My LinkedIn Profile
-          </a> */}
         </div>
       </div>
     </section>
