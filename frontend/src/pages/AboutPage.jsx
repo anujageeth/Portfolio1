@@ -12,7 +12,7 @@ const AboutPage = () => {
   const navigate = useNavigate();
 
   const handleResumeClick = () => {
-    navigate('/resume');
+    navigate('/cv');
   };
 
   return (
