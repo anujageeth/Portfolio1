@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import TechLogo from './TechLogo';
 import ProjectModal from './ProjectModal';
 import '../styles/Projects.css';
@@ -13,7 +12,6 @@ const technologiesWithLogos = [
 const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [selectedProject, setSelectedProject] = useState(null);
     const projectRefs = useRef({});
 
@@ -74,8 +72,8 @@ const Projects = () => {
         });
     }, [projects]); // Re-run when projects change
 
-    // Fallback projects remain the same
-    const fallbackProjects = [
+    // Hardcoded projects data
+    const projectsData = [
         {
             id: 1,
             title: "Lab Management System",
@@ -210,23 +208,15 @@ const Projects = () => {
         }
     ];
 
+    // Use hardcoded data with a simulated loading state
     useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const response = await axios.get('/api/projects');
-                setProjects(response.data);
-                setLoading(false);
-            } catch (error) {
-                // console.error('Error fetching projects:', error);
-                setTimeout(() => {
-                    setProjects(fallbackProjects); // Use fallback if API fails
-                    setLoading(false);
-                }, 1500); // Add a small delay to show loading state
-            }
-        };
-
-        // Attempt to fetch from API
-        fetchProjects();
+        // Simulate loading delay
+        const timer = setTimeout(() => {
+            setProjects(projectsData); // Use all projects
+            setLoading(false);
+        }, 800); // Short delay for loading animation
+        
+        return () => clearTimeout(timer);
     }, []);
 
     const handleViewProject = (project) => {
@@ -278,7 +268,6 @@ const Projects = () => {
             <p className="section-intro">
                 Check out my latest projects, showcasing my skills in web development, machine learning, and more.
             </p>
-            {error && <div className="error-message">{error}</div>}
             
             <div className="project-list">
                 {loading ? renderSkeletonCards() : (
