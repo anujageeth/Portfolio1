@@ -6,6 +6,8 @@ import {
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedinIn,
   FaFacebookF, FaInstagram, FaYoutube, FaTiktok 
 } from 'react-icons/fa';
+// Import the profile image
+import profileImage from '../assets/Me.jpeg'; // Ensure this path is correct
 import '../styles/AboutPage.css';
 
 const AboutPage = () => {
@@ -20,7 +22,8 @@ const AboutPage = () => {
       <div className="profile-card">
         <div className="profile-header">
           <div className="profile-image">
-            <img src="/me.jpeg" alt="Anuja Geeth" />
+            {/* Use the imported image */}
+            <img src={profileImage} alt="Anuja Geeth" />
           </div>
           <div className="profile-info">
             <h2>Anuja Geeth</h2>
