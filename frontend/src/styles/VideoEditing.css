@@ -26,19 +26,38 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: #ff0000;
-  color: white;
+  background: #ffffff;
   border-radius: 50px;
   font-weight: 500;
   transition: all 0.3s ease;
   font-size: 0.95rem;
+  font-weight: bold;
+  margin-right: 10px;
+  text-decoration: none;
+  box-shadow: none;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease scale 0.3s ease;
 }
 
-.channel-link a:hover {
+#youtube-button {
+  color: #cc0000;
+}
+
+#youtube-button:hover {
+  color: #ffffff;
   background: #cc0000;
-  transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(255, 0, 0, 0.3);
-  color: white;
+  scale: 1.05;
+}
+
+#tiktok-button {
+  color: #8a0b9a;
+}
+
+#tiktok-button:hover {
+  color: #ffffff;
+  background: #8a0b9a;
+  box-shadow: 0 6px 15px rgb(0, 0, 255, 0.3);
+  scale: 1.05;
 }
 
 .channel-link a svg {
