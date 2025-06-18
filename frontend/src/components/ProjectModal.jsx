@@ -61,7 +61,7 @@ const ProjectModal = ({ project, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content" ref={modalRef}>
         <button className="modal-close" onClick={onClose}>
-          <FaTimes />
+          <FaTimes className='modal-close-button'/>
         </button>
 
         <div className="modal-header">

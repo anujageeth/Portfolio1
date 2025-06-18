@@ -1,16 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TechLogo from './TechLogo';
+import ProjectCard, { ProjectSkeleton } from './ProjectCard';
 import ProjectModal from './ProjectModal';
-import { FaArrowRight } from 'react-icons/fa';
 import '../styles/Projects.css';
 import '../styles/SkillsPreview.css';
-
-// List of technologies that have logos defined in TechLogo component
-const technologiesWithLogos = [
-  'React', 'Node.js', 'Express', 'MongoDB', 'JavaScript', 
-  'HTML', 'CSS', 'Git', 'Python', 'C++'
-];
 
 const ProjectsPreview = () => {
     const [projects, setProjects] = useState([]);
@@ -179,14 +172,6 @@ const ProjectsPreview = () => {
         setSelectedProject(null);
     };
 
-    // Function to filter and limit technologies that have logos
-    const getDisplayTechnologies = (technologies) => {
-        const techsWithLogos = technologies.filter(tech => 
-            technologiesWithLogos.includes(tech)
-        );
-        return techsWithLogos.slice(0, 4); // Limit to max 4 technologies
-    };
-
     // Save ref for each project card
     const setProjectRef = (element, id) => {
         if (element && id) {
@@ -199,23 +184,17 @@ const ProjectsPreview = () => {
     }
 
     // Generate skeleton loading cards
-    const renderSkeletonCards = () => {
-        return Array(3).fill().map((_, index) => (
-            <div key={`skeleton-${index}`} className="project-item skeleton-card">
-                <div className="skeleton-image"></div>
-                <div className="skeleton-content">
-                    <div className="skeleton-title"></div>
-                    <div className="skeleton-text"></div>
-                    <div className="skeleton-text"></div>
-                    <div className="skeleton-button"></div>
-                </div>
-                <div className="skeleton-tech-overlay">
-                    <div className="skeleton-tech"></div>
-                    <div className="skeleton-tech"></div>
-                    <div className="skeleton-tech"></div>
-                    <div className="skeleton-tech"></div>
-                </div>
-            </div>
+    const renderSkeletons = () => {
+        // Determine number of cards based on screen width
+        let cardCount = 3;
+        if (window.innerWidth <= 768) {
+            cardCount = 1;
+        } else if (window.innerWidth <= 1200) {
+            cardCount = 2;
+        }
+        
+        return Array(cardCount).fill().map((_, index) => (
+            <ProjectSkeleton key={`skeleton-${index}`} />
         ));
     };
 
@@ -229,42 +208,15 @@ const ProjectsPreview = () => {
             </div>
             
             <div className="project-list preview-project-list">
-                {loading ? renderSkeletonCards() : (
+                {loading ? renderSkeletons() : (
                     projects.map(project => (
-                        <div 
-                            key={project.id} 
-                            className="project-item" 
-                            ref={(el) => setProjectRef(el, project.id)}
-                        >
-                            <div className="project-image">
-                                <img src={project.image} alt={project.title} />
-                                
-                                {/* Tech logos overlay */}
-                                <div className="project-tech-overlay">
-                                    {project.technologies.length > getDisplayTechnologies(project.technologies).length && (
-                                        <span className="tech-tag tech-more">
-                                            +{project.technologies.length - getDisplayTechnologies(project.technologies).length}
-                                        </span>
-                                    )}
-                                    
-                                    {getDisplayTechnologies(project.technologies).map((tech, index) => (
-                                        <div key={index} className="tech-icon-wrapper">
-                                            <TechLogo tech={tech} />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            
-                            <h3>{project.title}</h3>
-                            <p>{project.description}</p>
-                            
-                            <button 
-                                className="view-project-btn" 
-                                onClick={() => handleViewProject(project)}
-                            >
-                                View Project
-                            </button>
-                        </div>
+                        <ProjectCard 
+                            key={project.id}
+                            project={project}
+                            onView={handleViewProject}
+                            setRef={setProjectRef}
+                            isPreview={true}
+                        />
                     ))
                 )}
             </div>

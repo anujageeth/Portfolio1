@@ -72,9 +72,17 @@
 }
 
 .modal-close:hover {
-  background: rgba(239, 68, 68, 0.7); /* Changed to red for better UX */
-  transform: rotate(90deg);
+  background: rgba(108, 68, 239, 0.7);
   color: white;
+}
+
+.modal-close-button {
+  color: white;
+}
+
+.modal-close-button:hover {
+  transform: rotate(90deg);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .modal-header {
