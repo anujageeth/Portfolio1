@@ -172,6 +172,10 @@
   color: #00f2ea;
 }
 
+.platform-icon.facebook {
+  color: #1877f2;
+}
+
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -193,6 +197,34 @@
   transform: translateY(-8px);
   box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
   border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Add platform-specific styles for video items */
+.video-item.platform-tiktok {
+  border: 1px solid rgba(0, 220, 225, 0.3);
+}
+
+.video-item.platform-tiktok:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 220, 225, 0.3);
+  border-color: rgba(0, 220, 225, 0.6);
+}
+
+.video-item.platform-facebook {
+  border: 1px solid rgba(24, 119, 242, 0.3);
+}
+
+.video-item.platform-facebook:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(24, 119, 242, 0.3);
+  border-color: rgba(24, 119, 242, 0.6);
+}
+
+.video-item.platform-youtube {
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.video-item.platform-youtube:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 0, 0, 0.3);
+  border-color: rgba(255, 0, 0, 0.6);
 }
 
 .video-thumbnail {
@@ -335,5 +367,334 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+}
+
+/* Add Facebook button */
+#facebook-button {
+  background-color: #1877f2;
+  color: white;
+}
+
+#facebook-button:hover {
+  background-color: #166fe5;
+}
+
+/* TikTok video thumbnails - overlay styling to make them look authentic */
+.platform-tiktok .video-thumbnail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(238, 29, 82, 0.5), rgba(0, 220, 225, 0.5));
+  opacity: 0.3;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.platform-tiktok .video-thumbnail:hover::before {
+  opacity: 0.5;
+}
+
+/* Facebook video thumbnails */
+.platform-facebook .video-thumbnail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(24, 119, 242, 0.3), transparent);
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.platform-facebook .video-thumbnail:hover::before {
+  opacity: 0.5;
+}
+
+/* Filter and Search Container */
+.filter-search-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 15px 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Common styles for filter groups */
+.filter-group {
+  position: relative;
+}
+
+/* Category Dropdown */
+.category-dropdown {
+  position: relative;
+  min-width: 160px;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  color: #cbd5e1;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.dropdown-toggle svg:last-child {
+  margin-left: auto;
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.category-dropdown.active .dropdown-toggle svg:last-child {
+  transform: rotate(180deg);
+}
+
+.dropdown-toggle:hover {
+  background: rgba(51, 65, 85, 0.9);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: rgba(30, 41, 59, 0.95);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(10px);
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dropdown-item.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+.dropdown-item:hover:not(.active) {
+  background: rgba(51, 65, 85, 0.6);
+}
+
+/* Platform Filter Buttons */
+.platform-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.platform-filter-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.platform-filter-btn svg {
+  font-size: 1.2rem;
+}
+
+.platform-filter-btn.active {
+  border-width: 2px;
+}
+
+.platform-filter-btn.youtube {
+  color: #ff0000;
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+.platform-filter-btn.youtube.active {
+  background: rgba(255, 0, 0, 0.15);
+  border-color: rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+}
+
+.platform-filter-btn.tiktok {
+  color: #00f2ea;
+  border-color: rgba(0, 242, 234, 0.3);
+}
+
+.platform-filter-btn.tiktok.active {
+  background: rgba(0, 242, 234, 0.15);
+  border-color: rgba(0, 242, 234, 0.6);
+  box-shadow: 0 0 15px rgba(0, 242, 234, 0.15);
+}
+
+.platform-filter-btn.facebook {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.3);
+}
+
+.platform-filter-btn.facebook.active {
+  background: rgba(24, 119, 242, 0.15);
+  border-color: rgba(24, 119, 242, 0.6);
+  box-shadow: 0 0 15px rgba(24, 119, 242, 0.15);
+}
+
+/* Search Bar */
+.search-bar {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px 40px 10px 40px;
+  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  background: rgba(51, 65, 85, 0.9);
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.search-bar input::placeholder {
+  color: #64748b;
+}
+
+.clear-search {
+  position: absolute;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.clear-search:hover {
+  color: #e2e8f0;
+}
+
+/* Reset Filters Button */
+.reset-filters-btn {
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reset-filters-btn:hover {
+  background: rgba(99, 102, 241, 0.3);
+  color: #c7d2fe;
+}
+
+/* Filter Results Summary */
+.filter-results-summary {
+  margin-bottom: 20px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .filter-search-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+  }
+  
+  .category-dropdown,
+  .search-bar {
+    width: 100%;
+  }
+  
+  .platform-filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .platform-filter-btn {
+    flex-grow: 1;
+  }
+  
+  .reset-filters-btn {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .filter-search-container {
+    gap: 10px;
+  }
+  
+  .category-dropdown {
+    min-width: 140px;
   }
 }

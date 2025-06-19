@@ -15,6 +15,7 @@ const Header = () => {
                     <li><Link to="/cv">CV</Link></li>
                     <li><Link to="/projects">Projects</Link></li>
                     <li><Link to="/skills">Skills</Link></li>
+                    <li><Link to="/creative">Creative</Link></li>
                     {/* <li><Link to="/contact">Contact</Link></li> */}
                 </ul>
             </nav>

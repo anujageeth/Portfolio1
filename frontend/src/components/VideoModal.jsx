@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes, FaYoutube, FaTiktok, FaFacebook } from 'react-icons/fa';
 import '../styles/VideoModal.css';
 
 const VideoModal = ({ video, onClose }) => {
@@ -8,9 +8,14 @@ const VideoModal = ({ video, onClose }) => {
     return `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&autoplay=1`;
   };
 
-  // Create TikTok embed URL (if needed)
+  // Create TikTok embed URL
   const getTikTokEmbedUrl = (videoId) => {
     return `https://www.tiktok.com/embed/v2/${videoId}`;
+  };
+
+  // Create Facebook embed URL
+  const getFacebookEmbedUrl = (videoId) => {
+    return `https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2Fvideos%2F${videoId}%2F&show_text=false&t=0&width=560&height=315`;
   };
 
   // Get embed URL based on platform
@@ -19,8 +24,42 @@ const VideoModal = ({ video, onClose }) => {
       return getYouTubeEmbedUrl(video.videoId);
     } else if (video.platform === 'tiktok') {
       return getTikTokEmbedUrl(video.videoId);
+    } else if (video.platform === 'facebook') {
+      return getFacebookEmbedUrl(video.videoId);
     }
     return '';
+  };
+
+  // Get direct view URL based on platform
+  const getDirectViewUrl = (video) => {
+    if (video.platform === 'youtube') {
+      return `https://youtube.com/watch?v=${video.videoId}`;
+    } else if (video.platform === 'tiktok') {
+      return `https://tiktok.com/@anuja_geeth/video/${video.videoId}`;
+    } else if (video.platform === 'facebook') {
+      return `https://www.facebook.com/watch/?v=${video.videoId}`;
+    }
+    return '#';
+  };
+
+  // Get platform name for link text
+  const getPlatformName = (platform) => {
+    switch(platform) {
+      case 'youtube': return 'YouTube';
+      case 'tiktok': return 'TikTok';
+      case 'facebook': return 'Facebook';
+      default: return 'Original';
+    }
+  };
+
+  // Get platform icon
+  const getPlatformIcon = (platform) => {
+    switch(platform) {
+      case 'youtube': return <FaYoutube />;
+      case 'tiktok': return <FaTiktok />;
+      case 'facebook': return <FaFacebook />;
+      default: return null;
+    }
   };
 
   // Handle escape key to close modal
@@ -79,26 +118,16 @@ const VideoModal = ({ video, onClose }) => {
                 Edited with {video.toolName}
               </span>
             )}
-            {video.platform === 'youtube' && (
-              <a 
-                href={`https://youtube.com/watch?v=${video.videoId}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="video-modal-link"
-              >
-                Watch on YouTube
-              </a>
-            )}
-            {video.platform === 'tiktok' && (
-              <a 
-                href={`https://tiktok.com/@anuja_geeth/video/${video.videoId}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="video-modal-link"
-              >
-                Watch on TikTok
-              </a>
-            )}
+            
+            <a 
+              href={getDirectViewUrl(video)} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`video-modal-link platform-${video.platform}`}
+            >
+              {getPlatformIcon(video.platform)}
+              Watch on {getPlatformName(video.platform)}
+            </a>
           </div>
         </div>
       </div>

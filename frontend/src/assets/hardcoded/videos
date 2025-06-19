@@ -1,0 +1,123 @@
+const sampleVideos = [
+    {
+      id: 1,
+      title: 'Exploring Sri Lanka\'s Top Software Companies | 99x, Creative Software, IFS & WSO2',
+      description: 'In this video, we explore how these companies operate, their software development lifecycle, work culture, and cutting-edge technologies. From AI innovations to agile methodologies, each visit gave us valuable insights into the world of software engineering.',
+      videoId: 'R_i8nA9w7SA',
+      category: 'documentry',
+      platform: 'youtube',
+      // duration: '3:50',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
+    },
+    {
+      id: 2,
+      title: 'Video Advertisement - Business Studies',
+      description: 'This is a short video advertisement for a Business Studies private tuition class. It highlights the key features and benefits of the class, aiming to attract students who are interested in enhancing their knowledge in Business Studies.',
+      videoId: '1C9oC8cq18',
+      category: 'short',
+      platform: 'facebook',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 3,
+      title: 'Sanda Nena Da - Video Cover',
+      description: 'Immerse yourself in the melancholic beauty of "Sanda Nena Da". This video tells the poignant story, capturing the essence of lost love through evocative visuals and soothing melodies. Let the hauntingly beautiful music and the emotional journey of our characters resonate with your heart. Don\'t forget to like, comment, and subscribe for more LoFi music and touching stories.',
+      videoId: 'WNzlQCkvoZY',
+      category: 'cinematic',
+      platform: 'youtube',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
+    },
+    {
+      id: 4,
+      title: 'Galle Fort 🏛️',
+      description: 'A short video edit in Galle Fort, Sri Lanka. Capturing the beauty of this historic site.',
+      videoId: '7431039318849817864',
+      category: 'short',
+      platform: 'tiktok',
+      tool: 'capcut',
+      toolName: 'Capcut'
+    },
+    {
+      id: 5,
+      title: 'Hithawanthi - Video Cover',
+      description: 'mmerse yourself in the enchanting beauty of nature as we present our heartfelt video cover of the soul-soothing song "Hithawanthi". Set against the backdrop of a tranquil and picturesque lake, our visual interpretation captures the essence of this calm and slow melody that narrates a beautiful love story.',
+      videoId: '9qNBSWE9H2I',
+      category: 'cinematic',
+      platform: 'youtube',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 6,
+      title: 'Surfing day 🌊 ',
+      description: 'Join us for an exhilarating day of surfing at Dewata, Sri Lanka! 🏄‍♂️🌊 Experience the thrill of catching waves, the beauty of the ocean, and the joy of riding with friends. Whether you\'re a seasoned surfer or just love the beach vibes, this video captures the essence of a perfect surfing day.',
+      videoId: '7480915248459828488',
+      category: 'short',
+      platform: 'tiktok',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
+    },
+    {
+      id: 7,
+      title: 'Calming vibes ✨',
+      description: 'Experience the serene beauty of nature with our calming video edit. This short film captures the essence of tranquility, featuring breathtaking landscapes and soothing visuals that will transport you to a peaceful state of mind.',
+      videoId: '7446394469706860039',
+      category: 'short',
+      platform: 'tiktok',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 8,
+      title: 'Pretty Little Baby - Video Cover',
+      description: 'A surreal nightmare unfolds in this short thriller where reality blurs with fear. In a dreamlike haze, I’m being followed - watched - hunted. The tension builds with every step as the line between dream and danger fades. Set to the hauntingly beautiful rhythm of "Pretty Little Baby", this cinematic piece invites you into a world of suspense, emotion, and eerie calm before chaos.',
+      videoId: 'zs_0zDw-O64',
+      category: 'cinematic',
+      platform: 'youtube',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 8,
+      title: 'Riduman - Video Cover',
+      description: 'Explore our rendition of the captivating song "Riduman" in our unique video cover. Immerse yourself in a fresh interpretation that brings a new perspective to the mesmerizing melody. 🎶',
+      videoId: 'YW9FQ9s0GCw',
+      category: 'cinematic',
+      platform: 'youtube',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 9,
+      title: 'Gall Fort 🏛️ - A walk on streets',
+      description: 'Join us for a serene walk through the historic streets of Galle Fort, Sri Lanka. Experience the charm and tranquility of Galle Fort as we stroll through its picturesque lanes.',
+      videoId: '7446394469706860039',
+      category: 'short',
+      platform: 'tiktok',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 10,
+      title: 'Lotus Tower 🗼',
+      description: 'Experience the stunning Lotus Tower in Colombo, Sri Lanka, through this captivating video edit. The Lotus Tower, a symbol of modern architecture and cultural significance, stands tall against the city skyline.',
+      videoId: '7446394469706860039',
+      category: 'short',
+      platform: 'tiktok',
+      tool: 'capcut',
+      toolName: 'CapCut'
+    },
+    {
+      id: 11,
+      title: 'LabMS (Lab Management System) web application - A comprehensive demonstration',
+      description: 'LabMS is a full-featured web-based system developed to efficiently manage laboratory equipment and operations in an academic environment. Built by a team of 4 for the Electrical Department, the system includes equipment tracking with CRUD operations, low stock alerts, user role management (HoD, Technical Officers, Instructors, Lecturers, Students), report generation, lab booking features, and real-time notifications.',
+      videoId: '_Ip44sG_QxM',
+      category: 'documentry',
+      platform: 'youtube',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
+    }
+  ];

@@ -27,11 +27,29 @@
   max-height: 90vh;
   border-radius: 20px;
   overflow-y: auto;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(99, 102, 241, 0.4), /* Added outer glow */
+    0 0 80px rgba(139, 92, 246, 0.2); /* Added larger diffused glow */
   border: 1px solid rgba(99, 102, 241, 0.3);
   position: relative;
-  animation: modalSlideUp 0.4s ease-out;
+  animation: modalSlideUp 0.4s ease-out, glowPulse 3s infinite alternate;
   scrollbar-width: none;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(99, 102, 241, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.1);
+  }
+  100% {
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(139, 92, 246, 0.5),
+      0 0 80px rgba(99, 102, 241, 0.3);
+  }
 }
 
 @keyframes modalSlideUp {
@@ -43,6 +61,32 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Add platform-specific glow effects */
+.video-modal-content::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(15px);
+}
+
+[data-platform="youtube"] .video-modal-content::before {
+  background: linear-gradient(45deg, rgba(255, 0, 0, 0.3), transparent);
+}
+
+[data-platform="tiktok"] .video-modal-content::before {
+  background: linear-gradient(45deg, rgba(0, 220, 225, 0.3), rgba(238, 29, 82, 0.3));
+}
+
+[data-platform="facebook"] .video-modal-content::before {
+  background: linear-gradient(45deg, rgba(24, 119, 242, 0.3), transparent);
 }
 
 .video-modal-close {
@@ -126,6 +170,7 @@
 .video-modal-link {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   padding: 8px 16px;
   border-radius: 20px;
   background: rgba(99, 102, 241, 0.2);
@@ -140,6 +185,40 @@
   background: rgba(99, 102, 241, 0.8);
   color: #ffffff;
   box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Platform-specific link styling */
+.video-modal-link.platform-youtube {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff9999;
+}
+
+.video-modal-link.platform-youtube:hover {
+  background: rgba(255, 0, 0, 0.8);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.video-modal-link.platform-tiktok {
+  background: rgba(0, 220, 225, 0.2);
+  color: #00dce1;
+}
+
+.video-modal-link.platform-tiktok:hover {
+  background: linear-gradient(45deg, #00f2ea, #ff0050);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 220, 225, 0.3);
+}
+
+.video-modal-link.platform-facebook {
+  background: rgba(24, 119, 242, 0.2);
+  color: #7cb5ff;
+}
+
+.video-modal-link.platform-facebook:hover {
+  background: rgba(24, 119, 242, 0.8);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(24, 119, 242, 0.3);
 }
 
 .tool-icon {
