@@ -2,15 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { 
   FaExpand, 
   FaExternalLinkAlt, 
-  FaVectorSquare, // Added as replacement for SiCorel
-  FaLayerGroup
+  FaVectorSquare,
+  FaLayerGroup,
+  FaFacebook
 } from 'react-icons/fa';
 import { 
   SiAdobephotoshop, 
   SiCanva, 
-  SiFigma 
+  SiFigma,
+  SiAdobeillustrator
 } from 'react-icons/si';
 import '../styles/GraphicDesign.css';
+
+// Import all ColorG images
+import colorGAnil from '../assets/colorG/Color G - Anil sir.jpg';
+import colorGBackground from '../assets/colorG/Color G - Background.jpg';
+import colorGChithmina from '../assets/colorG/Color G - Chithmina clz.jpg';
+import colorGCover from '../assets/colorG/Color G - cover photo.jpg';
+import colorGDimuthu from '../assets/colorG/Color G - Dimuthu sir.jpg';
+import colorGEnglish from '../assets/colorG/Color G - English.jpg';
+import colorGPemasiri from '../assets/colorG/Color G - Pemasiri sir.jpg';
+import colorGTMG from '../assets/colorG/Color G - TMG.jpg';
+import colorGWall from '../assets/colorG/Color G - wall.jpg';
+import colorGWow from '../assets/colorG/Color G - Wow.jpg';
 
 const GraphicDesign = () => {
   const [designs, setDesigns] = useState([]);
@@ -28,78 +42,149 @@ const GraphicDesign = () => {
     { id: 'social', name: 'Social Media' }
   ];
 
-  // Sample designs data
-  const sampleDesigns = [
+  // Sample designs data with ColorG images
+  const colorGDesigns = [
     {
       id: 1,
-      title: 'Event Poster Design',
-      description: 'Promotional poster for a university tech event',
-      imageUrl: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000',
+      title: 'Dancing Classes Poster',
+      description: 'Custom graphics and typography for dancing classes',
+      imageUrl: colorGAnil,
       category: 'poster',
       tool: 'photoshop',
       toolName: 'Adobe Photoshop',
-      link: 'https://behance.net/anujageeth'
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
     },
     {
       id: 2,
-      title: 'Mobile App UI',
-      description: 'UI design for a productivity mobile application',
-      imageUrl: 'https://images.unsplash.com/photo-1616628188538-7e394936b2b0?q=80&w=1000',
-      category: 'ui',
-      tool: 'figma',
-      toolName: 'Figma',
-      link: 'https://figma.com/@anujageeth'
+      title: 'YouTube Thumbnail Designs',
+      description: 'Promotional design for YouTube video thumbnails',
+      imageUrl: colorGWow,
+      category: 'colorg',
+      tool: 'photoshop',
+      toolName: 'Adobe Photoshop',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
     },
     {
       id: 3,
-      title: 'Brand Identity',
-      description: 'Logo and color scheme for a tech startup',
-      imageUrl: 'https://images.unsplash.com/photo-1600439614353-c8a422390b4c?q=80&w=1000',
-      category: 'branding',
-      tool: 'illustrator',
-      toolName: 'CorelDRAW',
-      link: 'https://behance.net/anujageeth'
-    },
-    {
-      id: 4,
-      title: 'Social Media Template',
-      description: 'Instagram story template with customizable elements',
-      imageUrl: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1000',
-      category: 'social',
-      tool: 'canva',
-      toolName: 'Canva',
-      link: 'https://www.canva.com/anujageeth'
-    },
-    {
-      id: 5,
-      title: 'Website Mockup',
-      description: 'Modern website design for a photography portfolio',
-      imageUrl: 'https://images.unsplash.com/photo-1523726491678-bf852e717f6a?q=80&w=1000',
-      category: 'ui',
-      tool: 'figma',
-      toolName: 'Figma',
-      link: 'https://figma.com/@anujageeth'
-    },
-    {
-      id: 6,
-      title: 'Conference Banner',
-      description: 'Large format banner design for a tech conference',
-      imageUrl: 'https://images.unsplash.com/photo-1494059980473-813e73ee784b?q=80&w=1000',
+      title: 'O/L Classes Poster',
+      description: 'Promotional graphic for ordinary level classes',
+      imageUrl: colorGChithmina,
       category: 'poster',
       tool: 'photoshop',
       toolName: 'Adobe Photoshop',
-      link: 'https://behance.net/anujageeth'
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
+    },
+    {
+      id: 4,
+      title: 'Logo Designs and Cover Photos',
+      description: 'Professional logo and cover photo designs',
+      imageUrl: colorGCover,
+      category: 'branding',
+      tool: 'coreldraw',
+      toolName: 'CorelDRAW',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
+    },
+    {
+      id: 5,
+      title: 'English Classes Poster',
+      description: 'Educational promotional design for teacher',
+      imageUrl: colorGDimuthu,
+      category: 'colorg',
+      tool: 'photoshop',
+      toolName: 'Adobe Photoshop',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
+    },
+    {
+      id: 6,
+      title: 'English Classes Poster',
+      description: 'Promotional graphic for English language classes',
+      imageUrl: colorGEnglish,
+      category: 'colorg',
+      tool: 'coreldraw',
+      toolName: 'corelDRAW',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
+    },
+    {
+      id: 7,
+      title: 'Sinhala Classes Poster',
+      description: 'Promotional graphic for Sinhala language classes',
+      imageUrl: colorGPemasiri,
+      category: 'colorg',
+      tool: 'photoshop',
+      toolName: 'Adobe Photoshop',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
+    },
+    {
+      id: 8,
+      title: 'YouTube Thumbnail Designs',
+      description: 'Promotional design for YouTube video thumbnails',
+      imageUrl: colorGTMG,
+      category: 'colorg',
+      tool: 'photoshop',
+      toolName: 'Adobe Photoshop',
+      link: 'https://www.facebook.com/ColorGcreations',
+      type: 'image',
+      fbPostId: '1073650260685879'
     }
   ];
 
+  // Use Effect to load data
   useEffect(() => {
+    // Load the Facebook SDK for embedded posts
+    const loadFacebookSDK = () => {
+      window.fbAsyncInit = function() {
+        window.FB.init({
+          xfbml: true,
+          version: 'v18.0'
+        });
+        // Parse any FB elements that might be in the DOM already
+        if (window.FB) {
+          window.FB.XFBML.parse();
+        }
+      };
+
+      // Add Facebook SDK script if it doesn't exist
+      if (!document.getElementById('facebook-jssdk')) {
+        const script = document.createElement('script');
+        script.id = 'facebook-jssdk';
+        script.src = "https://connect.facebook.net/en_US/sdk.js";
+        document.head.appendChild(script);
+      }
+    };
+
+    loadFacebookSDK();
+
     // Simulate loading data from API
     setTimeout(() => {
-      setDesigns(sampleDesigns);
+      setDesigns(colorGDesigns);
       setLoading(false);
     }, 1000);
   }, []);
 
+  // Parse Facebook embeds when needed
+  useEffect(() => {
+    if (window.FB && !loading) {
+      setTimeout(() => {
+        window.FB.XFBML.parse();
+      }, 500);
+    }
+  }, [designs, selectedCategory, loading]);
+
+  // Handle lightbox open/close
   const openLightbox = (design) => {
     setCurrentDesign(design);
     setLightboxOpen(true);
@@ -111,6 +196,7 @@ const GraphicDesign = () => {
     document.body.style.overflow = 'auto';
   };
 
+  // Get tool icon based on the design tool
   const getToolIcon = (tool) => {
     switch(tool) {
       case 'photoshop':
@@ -118,17 +204,72 @@ const GraphicDesign = () => {
       case 'canva':
         return <SiCanva />;
       case 'illustrator':
-        return <FaVectorSquare />; // Replaced SiCorel with FaVectorSquare
+        return <SiAdobeillustrator />; 
       case 'figma':
         return <SiFigma />;
       default:
-        return <FaLayerGroup />; // Default icon
+        return <FaLayerGroup />;
     }
   };
 
+  // Filter designs based on selected category
   const filteredDesigns = selectedCategory === 'all' 
     ? designs 
     : designs.filter(design => design.category === selectedCategory);
+
+  // Render design content based on type
+  const renderDesignContent = (design) => {
+    switch(design.type) {
+      case 'facebook-post':
+        return (
+          <div className="facebook-embed-container" onClick={() => openLightbox(design)}>
+            <img src={design.imageUrl} alt={design.title} className="facebook-preview-image" />
+            <div className="facebook-overlay">
+              <FaFacebook className="facebook-icon" />
+              <span>Facebook Post</span>
+              <button className="view-post-btn">
+                <FaExpand />
+              </button>
+            </div>
+          </div>
+        );
+      case 'image':
+      default:
+        return (
+          <div className="design-image" onClick={() => openLightbox(design)}>
+            <img src={design.imageUrl} alt={design.title} />
+            <div className="design-overlay">
+              <FaExpand />
+            </div>
+          </div>
+        );
+    }
+  };
+
+  // Render content inside the lightbox
+  const renderLightboxContent = (design) => {
+    switch(design.type) {
+      case 'facebook-post':
+        return (
+          <div className="facebook-lightbox-content">
+            <img src={design.imageUrl} alt={design.title} />
+            <div className="facebook-embed-button">
+              <a 
+                href={`https://www.facebook.com/ColorGcreations/videos/${design.fbPostId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="view-on-facebook"
+              >
+                <FaFacebook /> View on Facebook
+              </a>
+            </div>
+          </div>
+        );
+      case 'image':
+      default:
+        return <img src={design.imageUrl} alt={design.title} />;
+    }
+  };
 
   return (
     <div className="graphic-design-container">
@@ -159,13 +300,8 @@ const GraphicDesign = () => {
         <div className="design-grid">
           {filteredDesigns.length > 0 ? (
             filteredDesigns.map(design => (
-              <div key={design.id} className="design-item">
-                <div className="design-image" onClick={() => openLightbox(design)}>
-                  <img src={design.imageUrl} alt={design.title} />
-                  <div className="design-overlay">
-                    <FaExpand />
-                  </div>
-                </div>
+              <div key={design.id} className={`design-item ${design.type === 'facebook-post' ? 'facebook-item' : ''}`}>
+                {renderDesignContent(design)}
                 <div className="design-info">
                   <h4>{design.title}</h4>
                   <p>{design.description}</p>
@@ -174,6 +310,11 @@ const GraphicDesign = () => {
                       {getToolIcon(design.tool)}
                       <span>{design.toolName}</span>
                     </span>
+                    {design.type === 'facebook-post' && (
+                      <span className="platform-badge facebook">
+                        <FaFacebook /> Facebook
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -190,7 +331,7 @@ const GraphicDesign = () => {
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-content" onClick={e => e.stopPropagation()}>
             <button className="close-lightbox" onClick={closeLightbox}>×</button>
-            <img src={currentDesign.imageUrl} alt={currentDesign.title} />
+            {renderLightboxContent(currentDesign)}
             <div className="lightbox-details">
               <h3>{currentDesign.title}</h3>
               <p>{currentDesign.description}</p>
@@ -204,7 +345,11 @@ const GraphicDesign = () => {
                 rel="noopener noreferrer" 
                 className="external-link"
               >
-                View full project <FaExternalLinkAlt />
+                {currentDesign.type === 'facebook-post' ? (
+                  <>View on Facebook <FaFacebook /></>
+                ) : (
+                  <>View full project <FaExternalLinkAlt /></>
+                )}
               </a>
             </div>
           </div>
