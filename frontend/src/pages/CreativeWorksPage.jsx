@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Photography from '../components/Photography';
 import GraphicDesign from '../components/GraphicDesign';
 import VideoEditing from '../components/VideoEditing';
@@ -7,6 +8,14 @@ import '../styles/CreativeWorksPage.css';
 
 const CreativeWorksPage = () => {
   const [activeTab, setActiveTab] = useState('photography');
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if there's a tab specified in location state (from header dropdown)
+    if (location.state && location.state.activeTab) {
+      setActiveTab(location.state.activeTab);
+    }
+  }, [location]);
 
   return (
     <div className="creative-works-page">

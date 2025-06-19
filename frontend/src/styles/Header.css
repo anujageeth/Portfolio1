@@ -1,10 +1,11 @@
+/* Base header styles */
 .header {
   background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-  padding: 20px 5%;
+  padding: 12px 5%;
   position: fixed;
   width: 100%;
   top: 0;
@@ -17,12 +18,13 @@
 
 .header.scrolled {
   background: rgba(15, 23, 42, 0.9);
-  padding: 15px 5%;
+  padding: 8px 5%;
 }
 
+/* Logo styles */
 .logo h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   background: linear-gradient(135deg, #a5b4fc, #818cf8);
   -webkit-background-clip: text;
   background-clip: text;
@@ -31,55 +33,247 @@
   text-decoration: none;
 }
 
+/* Navigation list */
 nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 20px;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
+/* Common styles for all navigation links */
 nav ul li a {
   color: #e2e8f0;
   font-weight: 500;
+  font-size: 0.9rem;
   position: relative;
-  padding: 5px 0;
+  padding: 6px 14px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 22px;
+  background: rgba(30, 41, 59, 0.3); /* Consistent background */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  letter-spacing: 0.3px;
 }
 
-nav ul li a::after {
+/* Navigation icon styles */
+.nav-icon, .dropdown-icon {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  transition: transform 0.2s ease;
+}
+
+/* Hover effects for navigation items */
+nav ul li a:hover {
+  color: #a5b4fc;
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+/* Active state styling */
+nav ul li a.active {
+  color: #c7d2fe;
+  background: rgba(79, 70, 229, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.2), 
+              inset 0 0 5px rgba(99, 102, 241, 0.1);
+}
+
+/* Dropdown container */
+.dropdown-container {
+  position: relative;
+  /* Remove fixed height as it causes positioning issues */
+}
+
+/* Dropdown toggle specific styles */
+.dropdown-toggle {
+  padding: 6px 14px !important;
+  border-radius: 22px !important;
+  background: rgba(30, 41, 59, 0.3) !important; /* Fixed dropdown toggle color */
+}
+
+/* Arrow icon in dropdown toggle */
+.dropdown-arrow {
+  font-size: 0.65rem;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.dropdown-container:hover .dropdown-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  margin-top: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  min-width: 200px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25),
+              0 0 0 1px rgba(99, 102, 241, 0.1),
+              0 0 20px rgba(99, 102, 241, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, transform 0.25s, visibility 0s linear 0.25s;
+  overflow: hidden;
+}
+
+/* Create an invisible area to bridge the gap */
+.dropdown-container::after {
   content: '';
   position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
+  top: 100%;
   left: 0;
-  background: linear-gradient(90deg, #a5b4fc, #818cf8);
-  transition: all 0.3s ease;
+  width: 100%;
+  height: 15px;
+  background: transparent;
 }
 
-nav ul li a:hover::after,
-nav ul li a.active::after {
+/* Show dropdown on hover - combined selector */
+.dropdown-container:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.25s, transform 0.25s, visibility 0s;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.85); /* More consistent styling */
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
   width: 100%;
 }
 
-nav ul li a:hover {
-  color: #a5b4fc;
+.dropdown-menu li a {
+  min-width: 100px;
+  color: #e2e8f0;
+  background: transparent;
+  padding: 10px 16px;
+  border-radius: 0px;
+  font-size: 0.85rem;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 4px);
 }
 
-nav ul li a.active {
-  color: #a5b4fc;
+.dropdown-menu li a:hover {
   background: rgba(99, 102, 241, 0.15);
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.1);
+  color: #a5b4fc;
+  transform: none;
 }
 
+.dropdown-menu li a.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #c7d2fe;
+}
+
+/* Icon animation in dropdown items */
+.dropdown-menu li a:hover .dropdown-icon {
+  transform: scale(1.4) rotate(360deg);
+}
+
+/* Background overlay when dropdown is active */
+.header-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(3px);
+  background-color: rgba(15, 23, 42, 0.2);
+  z-index: 999;
+  pointer-events: none;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
+  /* Header adjustments */
   .header {
     flex-direction: column;
-    padding: 15px 5%;
+    padding: 12px 5%;
   }
   
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+  
+  /* Navigation adjustments */
   nav ul {
-    margin-top: 15px;
-    gap: 15px;
+    margin-top: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+  
+  /* Dropdown positioning for mobile */
+  .dropdown-container {
+    position: static;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 94%;
+    margin: 8px auto 0;
+    transform: none !important;
+    border-radius: 20px;
+    display: none;
+  }
+  
+  /* Show dropdowns on mobile */
+  .dropdown-container:hover .dropdown-menu,
+  .dropdown-container.active .dropdown-menu {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    animation: fadeInMobile 0.25s ease forwards;
+  }
+  
+  @keyframes fadeInMobile {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) !important;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) !important;
+    }
   }
 }

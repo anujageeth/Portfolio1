@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaYoutube, FaTiktok, FaFacebook, FaPlay, FaSearch, FaCut, FaChevronDown, FaFilter, FaTimes } from 'react-icons/fa';
 import { SiAdobepremierepro, SiDavinciresolve, SiTiktok } from 'react-icons/si';
 import VideoModal from './VideoModal';
+import TikTokThumbnail from './TikTokThumbnail';
 import tikTokVidThumb from '../assets/TikTokVidThumb.png';
 import FaceBookVidThumb from '../assets/FaceBookVidThumb.png';
 import '../styles/VideoEditing.css';
@@ -44,26 +45,16 @@ const VideoEditing = () => {
     },
     {
       id: 2,
-      title: 'Video Advertisement - Business Studies',
-      description: 'This is a short video advertisement for a Business Studies private tuition class. It highlights the key features and benefits of the class, aiming to attract students who are interested in enhancing their knowledge in Business Studies.',
-      videoId: '1C9oC8cq18',
+      title: 'Lotus Tower 🗼',
+      description: 'Experience the stunning Lotus Tower in Colombo, Sri Lanka, through this captivating video edit. The Lotus Tower, a symbol of modern architecture and cultural significance, stands tall against the city skyline.',
+      videoId: '7516120448174755080',
       category: 'short',
-      platform: 'facebook',
+      platform: 'tiktok',
       tool: 'capcut',
       toolName: 'CapCut'
     },
     {
       id: 3,
-      title: 'Sanda Nena Da - Video Cover',
-      description: 'Immerse yourself in the melancholic beauty of "Sanda Nena Da". This video tells the poignant story, capturing the essence of lost love through evocative visuals and soothing melodies. Let the hauntingly beautiful music and the emotional journey of our characters resonate with your heart. Don\'t forget to like, comment, and subscribe for more LoFi music and touching stories.',
-      videoId: 'WNzlQCkvoZY',
-      category: 'cinematic',
-      platform: 'youtube',
-      tool: 'premiere',
-      toolName: 'Adobe Premiere Pro'
-    },
-    {
-      id: 4,
       title: 'Galle Fort 🏛️',
       description: 'A short video edit in Galle Fort, Sri Lanka. Capturing the beauty of this historic site.',
       videoId: '7431039318849817864',
@@ -71,6 +62,16 @@ const VideoEditing = () => {
       platform: 'tiktok',
       tool: 'capcut',
       toolName: 'Capcut'
+    },
+    {
+      id: 4,
+      title: 'Sanda Nena Da - Video Cover',
+      description: 'Immerse yourself in the melancholic beauty of "Sanda Nena Da". This video tells the poignant story, capturing the essence of lost love through evocative visuals and soothing melodies. Let the hauntingly beautiful music and the emotional journey of our characters resonate with your heart. Don\'t forget to like, comment, and subscribe for more LoFi music and touching stories.',
+      videoId: 'WNzlQCkvoZY',
+      category: 'cinematic',
+      platform: 'youtube',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
     },
     {
       id: 5,
@@ -134,11 +135,11 @@ const VideoEditing = () => {
     },
     {
       id: 11,
-      title: 'Lotus Tower 🗼',
-      description: 'Experience the stunning Lotus Tower in Colombo, Sri Lanka, through this captivating video edit. The Lotus Tower, a symbol of modern architecture and cultural significance, stands tall against the city skyline.',
-      videoId: '7446394469706860039',
+      title: 'Video Advertisement - Business Studies',
+      description: 'This is a short video advertisement for a Business Studies private tuition class. It highlights the key features and benefits of the class, aiming to attract students who are interested in enhancing their knowledge in Business Studies.',
+      videoId: '1073650260685879',
       category: 'short',
-      platform: 'tiktok',
+      platform: 'facebook',
       tool: 'capcut',
       toolName: 'CapCut'
     },
@@ -151,16 +152,6 @@ const VideoEditing = () => {
       platform: 'youtube',
       tool: 'premiere',
       toolName: 'Adobe Premiere Pro'
-    },
-    {
-      id: 13,
-      title: 'Facebook Video Demo',
-      description: 'A demonstration of Facebook video embedding capabilities for your portfolio website.',
-      videoId: '1234567890123456',
-      category: 'short',
-      platform: 'facebook',
-      tool: 'capcut',
-      toolName: 'CapCut'
     }
   ];
 
@@ -188,12 +179,14 @@ const VideoEditing = () => {
   const playVideo = (video) => {
     setActiveVideo(video);
     document.body.setAttribute('data-platform', video.platform);
+    document.body.classList.add('modal-open'); // Add class when modal opens
   };
 
   // Close video modal
   const closeModal = () => {
     setActiveVideo(null);
     document.body.removeAttribute('data-platform');
+    document.body.classList.remove('modal-open'); // Remove class when modal closes
   };
 
   // Toggle platform filter
@@ -283,6 +276,14 @@ const VideoEditing = () => {
            !platformFilters.facebook ||
            searchQuery !== '';
   };
+
+  // Clean up on component unmount
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('modal-open'); // Clean up class if component unmounts with modal open
+      document.body.removeAttribute('data-platform');
+    };
+  }, []);
 
   return (
     <div className="video-editing-container">
@@ -409,17 +410,21 @@ const VideoEditing = () => {
                   onClick={() => playVideo(video)}
                 >
                   <div className="video-thumbnail">
-                    <img 
-                      src={getVideoThumbnail(video)} 
-                      alt={video.title} 
-                      loading="lazy"
-                      onError={(e) => {
-                        // Fallback to medium quality thumbnail if maxresdefault fails
-                        if (e.target.src.includes('maxresdefault')) {
-                          e.target.src = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
-                        }
-                      }}
-                    />
+                    {video.platform === 'tiktok' ? (
+                      <TikTokThumbnail video={video} />
+                    ) : (
+                      <img 
+                        src={getVideoThumbnail(video)} 
+                        alt={video.title} 
+                        loading="lazy"
+                        onError={(e) => {
+                          // Fallback to medium quality thumbnail if maxresdefault fails
+                          if (e.target.src.includes('maxresdefault')) {
+                            e.target.src = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
+                          }
+                        }}
+                      />
+                    )}
                     <div className="play-overlay">
                       <FaPlay />
                       <span className="duration">{video.duration}</span>

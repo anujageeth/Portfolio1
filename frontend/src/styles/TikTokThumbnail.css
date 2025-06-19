@@ -1,0 +1,67 @@
+.tiktok-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.tiktok-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+  color: white;
+}
+
+.tiktok-logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+}
+
+.tiktok-user {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.7rem;
+}
+
+.tiktok-caption {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 2.5rem;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+.tiktok-music-note {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Make the thumbnail pulsate slightly on hover */
+.video-item:hover .tiktok-thumbnail {
+  animation: tiktok-pulse 1.5s infinite alternate;
+}
+
+@keyframes tiktok-pulse {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2); }
+}

@@ -15,7 +15,8 @@ const VideoModal = ({ video, onClose }) => {
 
   // Create Facebook embed URL
   const getFacebookEmbedUrl = (videoId) => {
-    return `https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2Fvideos%2F${videoId}%2F&show_text=false&t=0&width=560&height=315`;
+    // Use the official Facebook embed URL format
+    return `https://www.facebook.com/plugins/video.php?height=420&href=https%3A%2F%2Fwww.facebook.com%2FColorGcreations%2Fvideos%2F${videoId}%2F&show_text=false&width=560&t=0`;
   };
 
   // Get embed URL based on platform
@@ -37,7 +38,7 @@ const VideoModal = ({ video, onClose }) => {
     } else if (video.platform === 'tiktok') {
       return `https://tiktok.com/@anuja_geeth/video/${video.videoId}`;
     } else if (video.platform === 'facebook') {
-      return `https://www.facebook.com/watch/?v=${video.videoId}`;
+      return `https://www.facebook.com/ColorGcreations/videos/${video.videoId}/`;
     }
     return '#';
   };
