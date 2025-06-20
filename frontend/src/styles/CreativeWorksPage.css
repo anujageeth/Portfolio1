@@ -67,6 +67,59 @@
 
 .creative-content {
   min-height: 500px;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+  position: relative;
+  overflow: hidden; /* Prevents content from showing outside bounds during animation */
+}
+
+/* Slide Left Animation (Photography) */
+.creative-content.slide-left {
+  animation-name: slideInLeft;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Right Animation (Video Editing) */
+.creative-content.slide-right {
+  animation-name: slideInRight;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Up Animation (Graphic Design) */
+.creative-content.slide-up {
+  animation-name: slideInUp;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
