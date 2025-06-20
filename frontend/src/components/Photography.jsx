@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FaFacebook, FaInstagram, FaExpand, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaExpand, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/Photography.css';
+
+// Import photography data from separate file
+import { photographyData, photoCategories } from '../data/photographyData';
 
 const Photography = () => {
   const [photos, setPhotos] = useState([]);
@@ -8,100 +11,21 @@ const Photography = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState(null);
-
-  // Categories for filtering
-  const categories = [
-    { id: 'all', name: 'All Photos' },
-    { id: 'landscape', name: 'Landscape' },
-    { id: 'portrait', name: 'Portraits' },
-    { id: 'street', name: 'Street & Travel' },
-    { id: 'nature', name: 'Nature' },
-    { id: 'events', name: 'Event Coverage' }
-  ];
-
-  // Sample photos data - in a real app you'd fetch this from Facebook API
-  const samplePhotos = [
-    {
-      id: 1,
-      title: 'Sunset at Mountains',
-      description: 'Beautiful sunset over the mountains in Sri Lanka',
-      imageUrl: 'https://images.unsplash.com/photo-1586348943529-beaae6c28db9?q=80&w=1000',
-      category: 'landscape',
-      source: 'facebook',
-      sourceUrl: 'https://facebook.com/anujageeth'
-    },
-    {
-      id: 2,
-      title: 'Portrait Session',
-      description: 'Portrait photoshoot with natural lighting',
-      imageUrl: 'https://www.instagram.com/p/DCTCkAUogOS/',
-      category: 'portrait',
-      source: 'instagram',
-      sourceUrl: 'https://instagram.com/anuja_geeth'
-    },
-    {
-      id: 3,
-      title: 'City Life',
-      description: 'Street photography exploring urban textures',
-      imageUrl: 'https://images.unsplash.com/photo-1631432526486-b93505aace49?q=80&w=1000',
-      category: 'street',
-      source: 'facebook',
-      sourceUrl: 'https://facebook.com/anujageeth'
-    },
-    {
-      id: 4,
-      title: 'Mountain View',
-      description: 'Scenic view of mountain range',
-      imageUrl: 'https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=1000',
-      category: 'landscape',
-      source: 'instagram',
-      sourceUrl: 'https://instagram.com/anuja_geeth'
-    },
-    {
-      id: 5,
-      title: 'Wildlife Shot',
-      description: 'Bird in its natural habitat',
-      imageUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?q=80&w=1000',
-      category: 'nature',
-      source: 'facebook',
-      sourceUrl: 'https://facebook.com/anujageeth'
-    },
-    {
-      id: 6,
-      title: 'Wedding Ceremony',
-      description: 'Capturing special moments at a wedding',
-      imageUrl: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000',
-      category: 'events',
-      source: 'instagram',
-      sourceUrl: 'https://instagram.com/anuja_geeth'
-    },
-    {
-      id: 7,
-      title: 'Travel Memories',
-      description: 'Market scene from travel photography',
-      imageUrl: 'https://images.unsplash.com/photo-1528072164453-f4e8ef0d475a?q=80&w=1000',
-      category: 'street',
-      source: 'facebook',
-      sourceUrl: 'https://facebook.com/anujageeth'
-    },
-    {
-      id: 8,
-      title: 'Graduation Photoshoot',
-      description: 'Graduation day celebration photos',
-      imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000',
-      category: 'events',
-      source: 'instagram',
-      sourceUrl: 'https://instagram.com/anuja_geeth'
-    }
-  ];
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
 
   useEffect(() => {
+    // Reset to first page when category changes
+    setCurrentPage(1);
+    
     // Simulate loading data from API
     setTimeout(() => {
-      setPhotos(samplePhotos);
+      setPhotos(photographyData);
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [selectedCategory]);
 
   const openLightbox = (photo) => {
     setCurrentPhoto(photo);
@@ -114,28 +38,49 @@ const Photography = () => {
     document.body.style.overflow = 'auto';
   };
 
+  // Filter photos based on category
   const filteredPhotos = selectedCategory === 'all' 
     ? photos 
     : photos.filter(photo => photo.category === selectedCategory);
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPhotos = filteredPhotos.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredPhotos.length / itemsPerPage);
+
+  // Go to next or previous page
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      // Scroll to top of grid
+      document.querySelector('.category-filter').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      // Scroll to top of grid
+      document.querySelector('.category-filter').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="photography-container">
       <div className="photography-intro">
-        <h3>Photography Collection</h3>
-        <p>A selection of my best photographic work showcasing diverse themes and techniques</p>
-        
-        <div className="social-links">
-          <a href="https://facebook.com/anujageeth" target="_blank" rel="noopener noreferrer" className="social-link facebook">
-            <FaFacebook /> Follow my Photography Page
+        <div className="channel-link">
+          <a id='facebook-button' href="https://facebook.com/anujaphotography.lk" target="_blank" rel="noopener noreferrer">
+            <FaFacebook /> Facebook
           </a>
-          <a href="https://instagram.com/anuja_geeth" target="_blank" rel="noopener noreferrer" className="social-link instagram">
-            <FaInstagram /> Follow on Instagram
+          <a id='instagram-button' href="https://instagram.com/anuja.photography" target="_blank" rel="noopener noreferrer">
+            <FaInstagram /> Instagram
           </a>
         </div>
       </div>
 
       <div className="category-filter">
-        {categories.map(category => (
+        {photoCategories.map(category => (
           <button
             key={category.id}
             className={`category-button ${selectedCategory === category.id ? 'active' : ''}`}
@@ -153,35 +98,57 @@ const Photography = () => {
           ))}
         </div>
       ) : (
-        <div className="photo-grid">
-          {filteredPhotos.length > 0 ? (
-            filteredPhotos.map(photo => (
-              <div key={photo.id} className="photo-item">
-                <div className="photo-image" onClick={() => openLightbox(photo)}>
-                  <img src={photo.imageUrl} alt={photo.title} />
-                  <div className="photo-overlay">
-                    <FaExpand />
+        <>
+          <div className="photo-grid">
+            {currentPhotos.length > 0 ? (
+              currentPhotos.map(photo => (
+                <div key={photo.id} className="photo-item">
+                  <div className="photo-image" onClick={() => openLightbox(photo)}>
+                    <img src={photo.imageUrl} alt={photo.title} />
+                    <div className="photo-overlay">
+                      <FaExpand />
+                    </div>
+                  </div>
+                  <div className="photo-info">
+                    <h4>{photo.title}</h4>
                   </div>
                 </div>
-                <div className="photo-info">
-                  <h4>{photo.title}</h4>
-                  {/* <p>{photo.description}</p> */}
-                  <div className="photo-stats">
-                    {/* <span className="likes">❤️ {photo.likes}</span>
-                    <span className="comments">💬 {photo.comments}</span> */}
-                    <span className={`source ${photo.source}`}>
-                      {photo.source === 'facebook' ? <FaFacebook /> : <FaInstagram />}
-                    </span>
-                  </div>
-                </div>
+              ))
+            ) : (
+              <div className="no-photos">
+                <p>No photos found in this category.</p>
               </div>
-            ))
-          ) : (
-            <div className="no-photos">
-              <p>No photos found in this category.</p>
+            )}
+          </div>
+          
+          {/* Pagination Navigation */}
+          {filteredPhotos.length > itemsPerPage && (
+            <div className="pagination-container">
+              <button 
+                onClick={goToPreviousPage} 
+                className={`pagination-button prev ${currentPage === 1 ? 'disabled' : ''}`}
+                disabled={currentPage === 1}
+              >
+                <FaChevronLeft /> Previous
+              </button>
+              
+              <div className="pagination-info">
+                <span>Page {currentPage} of {totalPages}</span>
+                <span className="pagination-summary">
+                  Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredPhotos.length)} of {filteredPhotos.length} photos
+                </span>
+              </div>
+              
+              <button 
+                onClick={goToNextPage} 
+                className={`pagination-button next ${currentPage === totalPages ? 'disabled' : ''}`}
+                disabled={currentPage === totalPages}
+              >
+                Next <FaChevronRight />
+              </button>
             </div>
           )}
-        </div>
+        </>
       )}
 
       {lightboxOpen && currentPhoto && (
@@ -192,14 +159,6 @@ const Photography = () => {
             <div className="lightbox-details">
               <h3>{currentPhoto.title}</h3>
               <p>{currentPhoto.description}</p>
-              <a 
-                href={currentPhoto.sourceUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="source-link"
-              >
-                View original post <FaExternalLinkAlt />
-              </a>
             </div>
           </div>
         </div>

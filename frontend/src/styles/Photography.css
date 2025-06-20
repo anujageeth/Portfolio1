@@ -80,7 +80,7 @@
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns for large screens */
   gap: 25px;
   margin-top: 30px;
 }
@@ -184,12 +184,14 @@
 
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Match photo-grid */
   gap: 25px;
   margin-top: 30px;
+  width: 100%; /* Ensure grid takes full available width */
 }
 
 .photo-skeleton {
+  width: 100%; /* Ensure skeleton takes full width of its grid cell */
   height: 320px;
   background: linear-gradient(
     90deg,
@@ -200,6 +202,22 @@
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
   border-radius: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box; /* Ensure border is included in width calculation */
+}
+
+/* Add a pseudo-element to create a header area in the skeleton */
+.photo-skeleton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Matches the height of the photo-info section */
+  background: rgba(15, 23, 42, 0.8);
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
 }
 
 @keyframes shimmer {
@@ -292,14 +310,28 @@
   color: #a5b4fc;
 }
 
-@media (max-width: 768px) {
-  .social-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
+/* Medium screens - 2 columns */
+@media (max-width: 1200px) {
   .photo-grid,
   .loading-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small screens - 1 column */
+@media (max-width: 768px) {
+  .photo-grid,
+  .loading-grid {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+  
+  /* Make photo images taller on mobile for better visibility */
+  .photo-image {
+    height: 280px;
+  }
+  
+  /* Improve skeleton height for mobile */
+  .photo-skeleton {
+    height: 380px;
   }
 }

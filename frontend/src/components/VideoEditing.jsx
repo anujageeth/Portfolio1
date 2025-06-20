@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaYoutube, FaTiktok, FaFacebook, FaPlay, FaSearch, FaCut, FaChevronDown, FaFilter, FaTimes } from 'react-icons/fa';
+import { FaYoutube, FaTiktok, FaFacebook, FaPlay, FaSearch, FaCut, FaChevronDown, FaFilter, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SiAdobepremierepro, SiDavinciresolve, SiTiktok } from 'react-icons/si';
 import VideoModal from './VideoModal';
 import TikTokThumbnail from './TikTokThumbnail';
@@ -20,6 +20,10 @@ const VideoEditing = () => {
   });
   const [searchQuery, setSearchQuery] = useState('');
   const categoryDropdownRef = useRef(null);
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
 
   // Categories for filtering
   const categories = [
@@ -156,6 +160,9 @@ const VideoEditing = () => {
   ];
 
   useEffect(() => {
+    // Reset to first page when filters change
+    setCurrentPage(1);
+    
     // Simulate loading data from API
     setTimeout(() => {
       setVideos(sampleVideos);
@@ -173,7 +180,7 @@ const VideoEditing = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [selectedCategory, platformFilters, searchQuery]);
 
   // Play video in modal
   const playVideo = (video) => {
@@ -262,6 +269,29 @@ const VideoEditing = () => {
     return matchesCategory && matchesPlatform && matchesSearch;
   });
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentVideos = filteredVideos.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
+
+  // Change page
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      // Scroll to top of filter container
+      document.querySelector('.filter-search-container').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      // Scroll to top of filter container
+      document.querySelector('.filter-search-container').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Get active category name
   const getActiveCategoryName = () => {
     const category = categories.find(cat => cat.id === selectedCategory);
@@ -288,8 +318,8 @@ const VideoEditing = () => {
   return (
     <div className="video-editing-container">
       <div className="video-intro">
-        <h3>Video Production Portfolio</h3>
-        <p>A showcase of my videography and editing work across different styles and topics</p>
+        {/* <h3>Video Production Portfolio</h3>
+        <p>A showcase of my videography and editing work across different styles and topics</p> */}
         
         <div className="channel-link">
           <a id='youtube-button' href="https://youtube.com/@AnujaVideos" target="_blank" rel="noopener noreferrer">
@@ -304,9 +334,21 @@ const VideoEditing = () => {
         </div>
       </div>
 
+      <div className="category-filter">
+        {categories.map(category => (
+          <button
+            key={category.id}
+            className={`category-button ${selectedCategory === category.id ? 'active' : ''}`}
+            onClick={() => setSelectedCategory(category.id)}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
       <div className="filter-search-container">
         {/* Category Dropdown */}
-        <div className="filter-group category-dropdown" ref={categoryDropdownRef}>
+        {/* <div className="filter-group category-dropdown" ref={categoryDropdownRef}>
           <button 
             className="dropdown-toggle"
             onClick={() => setShowCategoryDropdown(!showCategoryDropdown)}
@@ -330,7 +372,7 @@ const VideoEditing = () => {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
 
         {/* Platform Filter Buttons */}
         <div className="filter-group platform-filters">
@@ -398,12 +440,15 @@ const VideoEditing = () => {
         <>
           {/* Filter Results Summary */}
           <div className="filter-results-summary">
-            <span>{filteredVideos.length} {filteredVideos.length === 1 ? 'video' : 'videos'} found</span>
+            <span>
+              {filteredVideos.length} {filteredVideos.length === 1 ? 'video' : 'videos'} found
+              {filteredVideos.length > itemsPerPage && ` (Showing ${indexOfFirstItem + 1}-${Math.min(indexOfLastItem, filteredVideos.length)})`}
+            </span>
           </div>
 
           <div className="video-grid">
-            {filteredVideos.length > 0 ? (
-              filteredVideos.map(video => (
+            {currentVideos.length > 0 ? (
+              currentVideos.map(video => (
                 <div 
                   key={video.id} 
                   className={`video-item platform-${video.platform}`} 
@@ -446,6 +491,34 @@ const VideoEditing = () => {
               </div>
             )}
           </div>
+          
+          {/* Pagination Navigation */}
+          {filteredVideos.length > itemsPerPage && (
+            <div className="pagination-container">
+              <button 
+                onClick={goToPreviousPage} 
+                className={`pagination-button prev ${currentPage === 1 ? 'disabled' : ''}`}
+                disabled={currentPage === 1}
+              >
+                <FaChevronLeft /> Previous
+              </button>
+              
+              <div className="pagination-info">
+                <span>Page {currentPage} of {totalPages}</span>
+                <span className="pagination-summary">
+                  Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredVideos.length)} of {filteredVideos.length} videos
+                </span>
+              </div>
+              
+              <button 
+                onClick={goToNextPage} 
+                className={`pagination-button next ${currentPage === totalPages ? 'disabled' : ''}`}
+                disabled={currentPage === totalPages}
+              >
+                Next <FaChevronRight />
+              </button>
+            </div>
+          )}
         </>
       )}
 

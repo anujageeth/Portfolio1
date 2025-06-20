@@ -60,6 +60,17 @@
   scale: 1.05;
 }
 
+#facebook-button {
+  color: #1877f2;
+}
+
+#facebook-button:hover {
+  color: #ffffff;
+  background: #1877f2;
+  box-shadow: 0 6px 15px rgba(24, 119, 242, 0.3);
+  scale: 1.05;
+}
+
 .channel-link a svg {
   font-size: 1.2rem;
 }
@@ -180,7 +191,7 @@
   position: relative;
   z-index: 1; /* Lower z-index than the dropdown */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns for large screens */
   gap: 25px;
   margin-top: 30px;
 }
@@ -326,61 +337,53 @@
 
 .loading-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* Match the video grid */
+  gap: 25px;
+  margin-top: 30px;
+  width: 100%; /* Ensure grid takes full available width */
+}
+
+/* Make sure this is the only video-grid definition (around line 250) */
+.video-grid {
+  position: relative;
+  z-index: 1; /* Lower z-index than the dropdown */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns for large screens */
   gap: 25px;
   margin-top: 30px;
 }
 
-.video-skeleton {
-  height: 270px;
-  background: linear-gradient(
-    90deg,
-    rgba(30, 41, 59, 0.6) 25%,
-    rgba(45, 55, 72, 0.5) 37%,
-    rgba(30, 41, 59, 0.6) 63%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite linear;
-  border-radius: 16px;
+.loading-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Match the video grid */
+  gap: 25px;
+  margin-top: 30px;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
+/* Medium screens - 2 columns */
+@media (max-width: 1200px) {
+  .video-grid,
+  .loading-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.no-videos {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 40px;
-  color: #94a3b8;
-}
-
+/* Small screens - 1 column */
 @media (max-width: 768px) {
   .video-grid,
   .loading-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: 1fr; /* Single column for mobile */
   }
   
-  .video-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  /* Make video thumbnails taller on mobile for better visibility */
+  .video-thumbnail {
+    height: 220px;
   }
-}
-
-/* Add Facebook button */
-#facebook-button {
-  background-color: #1877f2;
-  color: white;
-}
-
-#facebook-button:hover {
-  background-color: #166fe5;
+  
+  /* Increase skeleton height to match */
+  .video-skeleton {
+    height: 320px;
+  }
 }
 
 /* TikTok video thumbnails - overlay styling to make them look authentic */
@@ -660,6 +663,48 @@
   margin-bottom: 20px;
   color: #94a3b8;
   font-size: 0.95rem;
+}
+
+/* Add these styles for the video skeleton */
+.video-skeleton {
+  width: 100%; /* Ensure skeleton takes full width of its grid cell */
+  height: 280px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.6) 25%,
+    rgba(45, 55, 72, 0.5) 37%,
+    rgba(30, 41, 59, 0.6) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box; /* Ensure border is included in width calculation */
+}
+
+/* Add a pseudo-element to create a header area in the skeleton */
+.video-skeleton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px; /* Matches the height of the video-info section */
+  background: rgba(15, 23, 42, 0.8);
+  border-top: 1px solid rgba(99, 102, 141, 0.1);
+}
+
+/* Create a thumbnail area in the skeleton */
+.video-skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px; /* Matches the height of the video thumbnail */
+  background: rgba(20, 30, 45, 0.7);
 }
 
 /* Mobile Responsiveness */

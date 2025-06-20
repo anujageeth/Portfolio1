@@ -4,7 +4,9 @@ import {
   FaExternalLinkAlt, 
   FaVectorSquare,
   FaLayerGroup,
-  FaFacebook
+  FaFacebook,
+  FaChevronLeft,
+  FaChevronRight
 } from 'react-icons/fa';
 import { 
   SiAdobephotoshop, 
@@ -32,6 +34,10 @@ const GraphicDesign = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentDesign, setCurrentDesign] = useState(null);
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
 
   // Categories for filtering
   const categories = [
@@ -144,6 +150,9 @@ const GraphicDesign = () => {
 
   // Use Effect to load data
   useEffect(() => {
+    // Reset to first page when category changes
+    setCurrentPage(1);
+    
     // Load the Facebook SDK for embedded posts
     const loadFacebookSDK = () => {
       window.fbAsyncInit = function() {
@@ -173,7 +182,7 @@ const GraphicDesign = () => {
       setDesigns(colorGDesigns);
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [selectedCategory]);
 
   // Parse Facebook embeds when needed
   useEffect(() => {
@@ -216,6 +225,29 @@ const GraphicDesign = () => {
   const filteredDesigns = selectedCategory === 'all' 
     ? designs 
     : designs.filter(design => design.category === selectedCategory);
+
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentDesigns = filteredDesigns.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredDesigns.length / itemsPerPage);
+
+  // Change page
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      // Scroll to top of grid
+      document.querySelector('.category-filter').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      // Scroll to top of grid
+      document.querySelector('.category-filter').scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Render design content based on type
   const renderDesignContent = (design) => {
@@ -274,8 +306,12 @@ const GraphicDesign = () => {
   return (
     <div className="graphic-design-container">
       <div className="design-intro">
-        <h3>Graphic Design Portfolio</h3>
-        <p>A collection of my design work including UI/UX, branding, and promotional materials</p>
+        <div className="channel-link">
+          <a id='facebook-button' href="https://facebook.com/ColorGcreations" target="_blank" rel="noopener noreferrer">
+            <FaFacebook /> Facebook
+          </a>
+        </div>
+        
       </div>
 
       <div className="category-filter">
@@ -292,39 +328,69 @@ const GraphicDesign = () => {
 
       {loading ? (
         <div className="loading-grid">
-          {[1, 2, 3, 4, 5, 6].map(i => (
+          {[...Array(itemsPerPage)].map((_, i) => (
             <div key={i} className="design-skeleton"></div>
           ))}
         </div>
       ) : (
-        <div className="design-grid">
-          {filteredDesigns.length > 0 ? (
-            filteredDesigns.map(design => (
-              <div key={design.id} className={`design-item ${design.type === 'facebook-post' ? 'facebook-item' : ''}`}>
-                {renderDesignContent(design)}
-                <div className="design-info">
-                  <h4>{design.title}</h4>
-                  <p>{design.description}</p>
-                  <div className="design-meta">
-                    <span className="tool-used">
-                      {getToolIcon(design.tool)}
-                      <span>{design.toolName}</span>
-                    </span>
-                    {design.type === 'facebook-post' && (
-                      <span className="platform-badge facebook">
-                        <FaFacebook /> Facebook
+        <>
+          <div className="design-grid">
+            {currentDesigns.length > 0 ? (
+              currentDesigns.map(design => (
+                <div key={design.id} className={`design-item ${design.type === 'facebook-post' ? 'facebook-item' : ''}`}>
+                  {renderDesignContent(design)}
+                  <div className="design-info">
+                    <h4>{design.title}</h4>
+                    <p>{design.description}</p>
+                    <div className="design-meta">
+                      <span className="tool-used">
+                        {getToolIcon(design.tool)}
+                        <span>{design.toolName}</span>
                       </span>
-                    )}
+                      {design.type === 'facebook-post' && (
+                        <span className="platform-badge facebook">
+                          <FaFacebook /> Facebook
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
+              ))
+            ) : (
+              <div className="no-designs">
+                <p>No designs found in this category.</p>
               </div>
-            ))
-          ) : (
-            <div className="no-designs">
-              <p>No designs found in this category.</p>
+            )}
+          </div>
+          
+          {/* Pagination Navigation */}
+          {filteredDesigns.length > itemsPerPage && (
+            <div className="pagination-container">
+              <button 
+                onClick={goToPreviousPage} 
+                className={`pagination-button prev ${currentPage === 1 ? 'disabled' : ''}`}
+                disabled={currentPage === 1}
+              >
+                <FaChevronLeft /> Previous
+              </button>
+              
+              <div className="pagination-info">
+                <span>Page {currentPage} of {totalPages}</span>
+                <span className="pagination-summary">
+                  Showing {indexOfFirstItem + 1}-{Math.min(indexOfLastItem, filteredDesigns.length)} of {filteredDesigns.length} designs
+                </span>
+              </div>
+              
+              <button 
+                onClick={goToNextPage} 
+                className={`pagination-button next ${currentPage === totalPages ? 'disabled' : ''}`}
+                disabled={currentPage === totalPages}
+              >
+                Next <FaChevronRight />
+              </button>
             </div>
           )}
-        </div>
+        </>
       )}
 
       {lightboxOpen && currentDesign && (
