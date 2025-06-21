@@ -405,7 +405,7 @@ const GraphicDesign = () => {
                 <span>Created with:</span>
                 {getToolIcon(currentDesign.tool)} {currentDesign.toolName}
               </div>
-              <a 
+              {/* <a 
                 href={currentDesign.link} 
                 target="_blank" 
                 rel="noopener noreferrer" 
@@ -416,7 +416,7 @@ const GraphicDesign = () => {
                 ) : (
                   <>View full project <FaExternalLinkAlt /></>
                 )}
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

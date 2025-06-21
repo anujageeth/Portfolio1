@@ -39,10 +39,10 @@ const VideoEditing = () => {
   const sampleVideos = [
     {
       id: 1,
-      title: 'Exploring Sri Lanka\'s Top Software Companies | 99x, Creative Software, IFS & WSO2',
-      description: 'In this video, we explore how these companies operate, their software development lifecycle, work culture, and cutting-edge technologies. From AI innovations to agile methodologies, each visit gave us valuable insights into the world of software engineering.',
-      videoId: 'R_i8nA9w7SA',
-      category: 'documentry',
+      title: 'Sanda Nena Da - Video Cover',
+      description: 'Immerse yourself in the melancholic beauty of "Sanda Nena Da". This video tells the poignant story, capturing the essence of lost love through evocative visuals and soothing melodies. Let the hauntingly beautiful music and the emotional journey of our characters resonate with your heart. Don\'t forget to like, comment, and subscribe for more LoFi music and touching stories.',
+      videoId: 'WNzlQCkvoZY',
+      category: 'cinematic',
       platform: 'youtube',
       tool: 'premiere',
       toolName: 'Adobe Premiere Pro'
@@ -59,6 +59,16 @@ const VideoEditing = () => {
     },
     {
       id: 3,
+      title: 'Exploring Sri Lanka\'s Top Software Companies | 99x, Creative Software, IFS & WSO2',
+      description: 'In this video, we explore how these companies operate, their software development lifecycle, work culture, and cutting-edge technologies. From AI innovations to agile methodologies, each visit gave us valuable insights into the world of software engineering.',
+      videoId: 'R_i8nA9w7SA',
+      category: 'documentry',
+      platform: 'youtube',
+      tool: 'premiere',
+      toolName: 'Adobe Premiere Pro'
+    },
+    {
+      id: 4,
       title: 'Galle Fort 🏛️',
       description: 'A short video edit in Galle Fort, Sri Lanka. Capturing the beauty of this historic site.',
       videoId: '7431039318849817864',
@@ -66,16 +76,6 @@ const VideoEditing = () => {
       platform: 'tiktok',
       tool: 'capcut',
       toolName: 'Capcut'
-    },
-    {
-      id: 4,
-      title: 'Sanda Nena Da - Video Cover',
-      description: 'Immerse yourself in the melancholic beauty of "Sanda Nena Da". This video tells the poignant story, capturing the essence of lost love through evocative visuals and soothing melodies. Let the hauntingly beautiful music and the emotional journey of our characters resonate with your heart. Don\'t forget to like, comment, and subscribe for more LoFi music and touching stories.',
-      videoId: 'WNzlQCkvoZY',
-      category: 'cinematic',
-      platform: 'youtube',
-      tool: 'premiere',
-      toolName: 'Adobe Premiere Pro'
     },
     {
       id: 5,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import About from '../components/About';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -7,11 +7,46 @@ import {
   FaFacebookF, FaInstagram, FaYoutube, FaTiktok 
 } from 'react-icons/fa';
 // Import the profile image
-import profileImage from '../assets/Me.jpeg'; // Ensure this path is correct
+import profileImage from '../assets/Me.jpeg';
 import '../styles/AboutPage.css';
 
 const AboutPage = () => {
   const navigate = useNavigate();
+  // Create refs for all timeline items
+  const timelineItemsRef = useRef([]);
+
+  // Set up the Intersection Observer for animation
+  useEffect(() => {
+    // Observer options - animation triggers when 20% of element is visible
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add visible class when element is in view
+          entry.target.classList.add('timeline-item-visible');
+          // Stop observing once animation is triggered
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    // Observe all timeline items
+    timelineItemsRef.current.forEach(item => {
+      if (item) observer.observe(item);
+    });
+
+    // Cleanup
+    return () => {
+      timelineItemsRef.current.forEach(item => {
+        if (item) observer.unobserve(item);
+      });
+    };
+  }, []);
 
   const handleResumeClick = () => {
     navigate('/cv');
@@ -22,7 +57,6 @@ const AboutPage = () => {
       <div className="profile-card">
         <div className="profile-header">
           <div className="profile-image">
-            {/* Use the imported image */}
             <img src={profileImage} alt="Anuja Geeth" />
           </div>
           <div className="profile-info">
@@ -73,16 +107,16 @@ const AboutPage = () => {
           </div>
           <div className="profile-actions">
             <button className="btn1" onClick={handleResumeClick}>View Resume</button>
-            {/* <a href="/resume.pdf" download className="btn download-resume">
-              Download Resume
-            </a> */}
           </div>
         </div>
       </div>
       
       <div className="about-extended">
         <div className="timeline">
-          <div className="timeline-item">
+          <div 
+            className="timeline-item" 
+            ref={el => timelineItemsRef.current[0] = el}
+          >
             <div className="timeline-icon">
               <FaGraduationCap />
             </div>
@@ -96,7 +130,10 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="timeline-item">
+          <div 
+            className="timeline-item" 
+            ref={el => timelineItemsRef.current[1] = el}
+          >
             <div className="timeline-icon">
               <FaBriefcase />
             </div>
@@ -110,7 +147,10 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="timeline-item">
+          <div 
+            className="timeline-item" 
+            ref={el => timelineItemsRef.current[2] = el}
+          >
             <div className="timeline-icon">
               <FaLaptopCode />
             </div>
@@ -126,7 +166,10 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="timeline-item">
+          <div 
+            className="timeline-item" 
+            ref={el => timelineItemsRef.current[3] = el}
+          >
             <div className="timeline-icon">
               <FaLightbulb />
             </div>
