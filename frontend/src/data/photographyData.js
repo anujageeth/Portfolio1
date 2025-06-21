@@ -73,10 +73,10 @@ export const photographyData = [
   },
   {
     id: 3,
-    title: 'Temple Oil Lamps',
+    title: 'Wet Oil Lamps',
     description: 'Oil lamps in Buduruwagala temple',
     imageUrl: IMG_20250515_143258,
-    category: 'creative',
+    category: '',
     source: 'facebook',
     sourceUrl: 'https://facebook.com/anujageeth'
   },
@@ -121,7 +121,7 @@ export const photographyData = [
     title: 'Lights & Decor',
     description: 'Festive lights and decorations at night',
     imageUrl: img1673467810839,
-    category: 'events',
+    category: 'street',
     source: 'instagram',
     sourceUrl: 'https://instagram.com/anuja_geeth'
   },
@@ -190,7 +190,7 @@ export const photographyData = [
   },
   {
     id: 16,
-    title: 'Traditional Landscape',
+    title: 'Kelani Viharaya',
     description: 'Scenic traditional landscape at Kelani Viharaya',
     imageUrl: IMG_20250601_115615,
     category: 'landscape',
@@ -319,7 +319,7 @@ export const photographyData = [
     title: 'Lights & Shadows',
     description: 'Capturing the interplay of light and shadows on temple paintings',
     imageUrl: IMG_20250601_115655,
-    category: 'creative',
+    category: 'street',
     source: 'instagram',
     sourceUrl: 'https://instagram.com/anuja_geeth'
   },
@@ -337,7 +337,7 @@ export const photographyData = [
     title: 'Pirith Ceremony',
     description: 'Pirith ceremony with traditional art designs',
     imageUrl: imgIMG_20241005_004041,
-    category: 'events',
+    category: '',
     source: 'instagram',
     sourceUrl: 'https://instagram.com/anuja_geeth'
   },
