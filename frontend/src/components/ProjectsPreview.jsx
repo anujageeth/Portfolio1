@@ -4,6 +4,7 @@ import ProjectCard, { ProjectSkeleton } from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import '../styles/Projects.css';
 import '../styles/SkillsPreview.css';
+import projectsData from '../data/projectData'; // Import project data
 
 const ProjectsPreview = () => {
     const [projects, setProjects] = useState([]);
@@ -69,95 +70,11 @@ const ProjectsPreview = () => {
         });
     }, [projects]); // Re-run when projects change
 
-    // Hardcoded projects data
-    const projectsData = [
-        {
-            id: 1,
-            title: "Lab Management System",
-            description: "A web-based Management System developed to manage laboratory equipment, bookings, users and reports.",
-            longDescription: "This system aims to simplify the laboratories and related procedures of the Department of Electrical and Information Engineering. The main goal of this project is to manage the inventory of the department. Also, there are more features to generate inventory reports, manage users, equipment check-in and check-out and laboratory booking.",
-            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2ViJTIwZGVzaWdufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-            technologies: ["React", "Node.js", "Express", "MongoDB", "CSS", "EmailJS", "FireStore"],
-            features: [
-                "🔐 Role-Based Access Control",
-                "📦 Equipment Management with CRUD operations",
-                "⚠️ Low Stock Alerts for inventory control",
-                "📅 Lab Booking System with availability checking",
-                "📊 Report Generation & Export",
-                "🔍 Search and Filter Equipment",
-                "🔔 Notification System, including Telegram Bot integration",
-                "🧭 Responsive UI with Side Navigation",
-                "📁 User Authentication & Session Management"
-            ],
-            link: "https://github.com/anujageeth/LabMS3",
-            demoLink: ""
-        },
-        {
-            id: 2,
-            title: "Modern Blogging Platform",
-            description: "A full-featured blogging platform built with the MERN stack offering a complete social blogging experience.",
-            longDescription: "A comprehensive e-commerce solution built using the MERN stack (MongoDB, Express, React, Node.js). This platform features user authentication, product browsing with filtering and search functionality, shopping cart management, secure checkout with Stripe integration, and an admin dashboard for inventory and order management. The application is fully responsive and follows modern web development best practices including state management with Redux and secure API endpoints.",
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGVjb21tZXJjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-            technologies: ["React", "Node.js", "Express", "MongoDB", "CSS", "Google OAuth", "Cloudinary", "TextGears"],
-            features: [
-                "🔐 Authentication",
-                "• Email/Password login system",
-                "• Google OAuth integration (auto-imports profile picture)",
-                "• Secure password management",
-                "✍️ Post Management",
-                "• Rich text editor (bold, italic, underline, images)",
-                "• AI-powered content improvement suggestions",
-                "• Create, edit, delete posts",
-                "• Responsive post display",
-                "💬 Social Features",
-                "• Like and comment system",
-                "• Subscribe to other users",
-                "• Notification system for:",
-                "• Likes/comments on your posts",
-                "• New posts from subscribed users",
-                "🔍 Advanced Search",
-                "• Search posts by title/content",
-                "• Search users",
-                "• Date range filtering",
-                "• Profile-specific searching",
-                "👤 User Profiles",
-                "• View user stats (posts, subscribers)",
-                "• Edit profile (name, bio, picture, password)",
-                "• Visit others' profiles with one click",
-                "🎨 Modern UI/UX",
-                "• Fully responsive design",
-                "• Clean, intuitive interface",
-                "• Optimized for all devices"
-            ],
-            link: "https://github.com/anujageeth/BlogSite1",
-            demoLink: "https://blog-site1-beta.vercel.app/"
-        },
-        {
-            id: 3,
-            title: "Weather Prediction AI",
-            description: "This project implements a Long Short-Term Memory (LSTM) deep learning model to predict daily mean temperature.",
-            longDescription: "The goal of this project is to forecast the mean temperature at 2 meters using past weather data. The dataset includes various meteorological parameters such as precipitation, wind speed, daylight hours, sunrise/sunset times, and more. The entire machine learning pipeline is implemented from scratch in Python using TensorFlow/Keras for model building and pandas, NumPy, matplotlib, and seaborn for data analysis and visualization.",
-            image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dGFzayUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
-            technologies: ["Python", "Pandas", "Numpy", "Seaborn", "Matplotlib", "TensorFlow", "Keras"],
-            features: [
-                "🔍 Exploratory Data Analysis (EDA)",
-                "🧹 Missing value handling and outlier detection",
-                "🛠️ Feature engineering (including daylight hours and cyclical seasonal features)",
-                "📈 Time-series sequencing for LSTM input",
-                "🧠 2-layer LSTM model with dropout for regularization",
-                "📊 Evaluation using MSE, RMSE, MAE, R²",
-                "📉 Visualizations for training history and actual vs predicted results"
-            ],
-            link: "https://github.com/anujageeth/WeatherPrediction1",
-            demoLink: ""
-        }
-    ];
-
-    // Use hardcoded data with a simulated loading state
+    // Use imported data with a simulated loading state
     useEffect(() => {
         // Simulate loading delay
         const timer = setTimeout(() => {
-            setProjects(projectsData.slice(0, 3)); // Use only first 3 projects
+            setProjects(projectsData.slice(0, 3)); // Use only first 3 projects from imported data
             setLoading(false);
         }, 800); // Short delay for loading animation
         

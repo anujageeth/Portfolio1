@@ -1,6 +1,6 @@
-/* .graphic-design-container {
+.graphic-design-container {
   animation: fadeIn 0.5s ease-in-out;
-} */
+}
 
 .design-intro {
   margin-bottom: 30px;
@@ -25,10 +25,10 @@
 .channel-link a {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   padding: 10px 20px;
   background: #ffffff;
-  border-radius: 25px;
+  border-radius: 15px;
   font-weight: 500;
   transition: all 0.3s ease;
   font-size: 0.95rem;
@@ -67,7 +67,7 @@
   margin-bottom: 30px;
   background: #151f50;
   padding: 5px;
-  border-radius: 30px;
+  border-radius: 25px;
 }
 
 .category-button {
