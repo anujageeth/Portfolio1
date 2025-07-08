@@ -4,10 +4,8 @@ import blogSiteLogo from '../assets/myProjects/BlogSite1Logo2.png';
 import weatherAIImage from '../assets/myProjects/WeatherAI.png';
 import devOpsImage from '../assets/myProjects/DevOps.png';
 import telCoImage from '../assets/myProjects/TelCo.png';
+import web3TasksImage from '../assets/myProjects/Web3Tasks.jpg';
 
-/**
- * Project data with local images
- */
 export const projectsData = [
     {
         id: 1,
@@ -72,6 +70,49 @@ export const projectsData = [
     },
     {
         id: 3,
+        title: "Web3 Tasks Platform",
+        description: "A full-stack decentralized platform that redefines how blockchain communities engage with users through gamified tasks and rewards.",
+        longDescription: "A comprehensive Web3 Tasks Platform to bridge the gap between traditional web applications and blockchain technology. The platform features secure Web3 wallet authentication, multi-platform social integrations, and a sophisticated task management system with point tracking. Built with modern technologies like Next.js, Node.js, and integrated with multiple blockchain networks, this platform demonstrates advanced understanding of Web3 architecture, secure authentication patterns, and real-time communication systems.",
+        image: web3TasksImage,
+        technologies: ["Next.js", "Node.js", "Web3", "MetaMask", "WalletConnect", "JWT", "OAuth", "WebSockets", "Tailwind CSS", "Framer Motion", "Aceternity UI", "MongoDB"],
+        features: [
+            "🔐 Web3 Authentication",
+            "• MetaMask integration with secure wallet connection",
+            "• WalletConnect support for mobile wallets", 
+            "• SIWE (Sign-In with Ethereum) implementation (EIP-4361)",
+            "• JWT authentication with secure cookies and refresh tokens",
+            "🌐 Multi-Platform Integration",
+            "• Twitter API integration for social tasks",
+            "• Discord bot integration and verification",
+            "• Telegram API for community engagement",
+            "• Google OAuth for additional authentication",
+            "📋 Task Management System",
+            "• Custom event and task creation system",
+            "• Point tracking and reward mechanisms",
+            "• Real-time task updates via WebSockets",
+            "• Scalable backend API architecture",
+            "🎨 Modern UI/UX",
+            "• Mobile-responsive design with Tailwind CSS",
+            "• Aceternity UI components for enhanced aesthetics",
+            "• Smooth animations with Framer Motion",
+            "• Intuitive interface for Web3 beginners and power users",
+            "⚡ Advanced Features",
+            "• Multi-chain blockchain support",
+            "• Rate limiting and OAuth flow management",
+            "• Secure cookie-based session management",
+            "• Real-time communication and updates",
+            "🚀 Future Roadmap",
+            "• On-chain token/NFT rewards system",
+            "• DAO-based task creation governance",
+            "• React Native mobile application",
+            "• Analytics dashboard for project managers",
+            "• Additional platform integrations (TikTok, Reddit, LinkedIn)"
+        ],
+        link: "https://github.com/anujageeth/Portfolio1",
+        demoLink: "https://cryptoken-tasks.vercel.app"
+    },
+    {
+        id: 4,
         title: "Weather Prediction AI",
         description: "This project implements a Long Short-Term Memory (LSTM) deep learning model to predict daily mean temperature.",
         longDescription: "The goal of this project is to forecast the mean temperature at 2 meters using past weather data. The dataset includes various meteorological parameters such as precipitation, wind speed, daylight hours, sunrise/sunset times, and more. The entire machine learning pipeline is implemented from scratch in Python using TensorFlow/Keras for model building and pandas, NumPy, matplotlib, and seaborn for data analysis and visualization.",
@@ -90,7 +131,7 @@ export const projectsData = [
         demoLink: ""
     },
     {
-        id: 4,
+        id: 5,
         title: "DevOps Project",
         description: "A Social Media Web Application while integrating key DevOps practices and tools",
         longDescription: "This project is implemented to build a Social Media Web Application while integrating key DevOps practices and tools such as Docker, Jenkins, Terraform, Ansible, and AWS. The goal is not only to develop the application but also to demonstrate an end-to-end DevOps pipeline for deployment and delivery.",
@@ -124,7 +165,7 @@ export const projectsData = [
         demoLink: ""
     },
     {
-        id: 5,
+        id: 6,
         title: "Telecom Customer Churn Prediction",
         description: "Machine learning model to predict customer churn for telecom companies.",
         longDescription: "This project uses machine learning to predict which customers are likely to cancel their telecom service subscription. By analyzing customer data including usage patterns, billing information, customer service interactions, and demographics, the model identifies patterns that precede customer churn. The solution includes data preprocessing, feature engineering, model selection (comparing Random Forest, XGBoost, and Neural Networks), hyperparameter tuning, and a web dashboard for visualizing predictions and customer segments.",

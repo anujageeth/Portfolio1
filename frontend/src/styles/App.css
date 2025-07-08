@@ -9,13 +9,8 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   color: #e2e8f0;
-  background-color: #0f172a;
-  background-image: 
-    radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(74, 222, 128, 0.1) 0px, transparent 50%);
-  background-attachment: fixed;
-  background-size: cover;
+  /* Remove static background since we're using animated one in index.css */
+  background-color: transparent;
 }
 
 .container {
@@ -26,6 +21,8 @@ body {
 
 section {
   padding: 80px 0;
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3 {
@@ -139,5 +136,55 @@ a:hover {
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+  }
+}
+
+/* Add floating particles effect for extra visual appeal */
+.background-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(99, 102, 241, 0.6);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+}
+
+.particle:nth-child(odd) {
+  background: rgba(139, 92, 246, 0.4);
+  animation-duration: 20s;
+}
+
+.particle:nth-child(3n) {
+  background: rgba(74, 222, 128, 0.3);
+  animation-duration: 25s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0px) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) translateX(10px) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(10vh) translateX(-10px) scale(1);
+  }
+  100% {
+    transform: translateY(-10vh) translateX(0px) scale(0);
+    opacity: 0;
   }
 }

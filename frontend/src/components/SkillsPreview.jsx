@@ -1,13 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaPython, 
-  FaJs, FaJava, FaDocker, FaDatabase, FaFigma, FaGithub,
-  FaArrowRight
+  FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaPython, 
+  FaJs, FaJava, FaDocker
 } from 'react-icons/fa';
 import { 
-  SiExpress, SiMongodb, SiNpm, SiJenkins, SiJira,
-  SiCplusplus, SiC, SiFirebase, SiPandas, SiNumpy
+  SiExpress, SiJenkins, SiJira,
+  SiCplusplus, SiC, SiNextdotjs
 } from 'react-icons/si';
 import '../styles/Skills.css';
 import '../styles/SkillsPreview.css';
@@ -31,6 +30,7 @@ const SkillsPreview = () => {
             name: "Web Development",
             skills: [
                 { name: "React.js", icon: <FaReact /> },
+                { name: "Next.js", icon: <SiNextdotjs /> },
                 { name: "Express.js", icon: <SiExpress /> },
                 { name: "Node.js", icon: <FaNodeJs /> },
                 { name: "HTML", icon: <FaHtml5 /> },

@@ -11,7 +11,7 @@ const LinkedInPosts = () => {
   const linkedInPosts = [
     "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7336277283126595584?collapsed=1",
     "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7337791637944705024?collapsed=1",
-    "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7196296814348664832?collapsed=1"
+    "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7345747459555344384?collapsed=1"
   ];
 
   // Function to handle iframe load events

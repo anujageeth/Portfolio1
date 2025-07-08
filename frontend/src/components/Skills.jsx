@@ -1,11 +1,11 @@
 import React from 'react';
 import { 
   FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaPython, 
-  FaJs, FaJava, FaDocker, FaDatabase, FaFigma, FaGithub
+  FaJs, FaJava, FaDocker, FaDatabase, FaFigma, FaGithub, FaAws
 } from 'react-icons/fa';
 import { 
   SiExpress, SiMongodb, SiNpm, SiJenkins, SiJira,
-  SiCplusplus, SiC, SiFirebase, SiPandas, SiNumpy
+  SiCplusplus, SiC, SiFirebase, SiPandas, SiNumpy, SiNextdotjs
 } from 'react-icons/si';
 import '../styles/Skills.css';
 
@@ -28,6 +28,7 @@ const Skills = () => {
             name: "Web Development",
             skills: [
                 { name: "React.js", icon: <FaReact /> },
+                { name: "Next.js", icon: <SiNextdotjs /> },
                 { name: "Express.js", icon: <SiExpress /> },
                 { name: "Node.js", icon: <FaNodeJs /> },
                 { name: "MongoDB", icon: <SiMongodb /> },
@@ -77,7 +78,8 @@ const Skills = () => {
         {
             name: "Cloud Platforms",
             skills: [
-                { name: "Firebase", icon: <SiFirebase /> }
+                { name: "Firebase", icon: <SiFirebase /> },
+                { name: "AWS", icon: <FaAws /> },
             ]
         }
     ];
