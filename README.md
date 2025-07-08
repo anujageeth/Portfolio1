@@ -11,7 +11,6 @@ A modern, responsive portfolio website built with the MERN stack (MongoDB, Expre
 - **Skills Page**: Comprehensive display of technical and creative abilities
 - **Creative Works**: Dedicated sections for photography, videography, and graphic design
 - **Resume/CV**: Embedded PDF viewer with download functionality
-- **Contact Page**: Functional contact form with backend integration
 
 ### 🎨 **Creative Portfolio Sections**
 - **Photography Gallery**: Curated collection of landscape, portrait, street, and nature photography
@@ -25,29 +24,6 @@ A modern, responsive portfolio website built with the MERN stack (MongoDB, Expre
 - **Project Modals**: Detailed project views with tech stacks, features, and live/demo links
 - **Search & Filter**: Filter projects by technology and category
 - **Loading States**: Skeleton loaders for enhanced user experience
-- **Contact Integration**: Backend API for handling contact form submissions
-
-## 🛠️ **Technology Stack**
-
-### **Frontend**
-- **React.js** - Modern UI library with hooks
-- **React Router DOM** - Client-side routing
-- **React Icons** - Comprehensive icon library
-- **React PDF** - PDF viewing capabilities
-- **Axios** - HTTP client for API requests
-- **CSS3** - Custom styling with modern features (backdrop-filter, gradients, animations)
-
-### **Backend**
-- **Node.js** - JavaScript runtime environment
-- **Express.js** - Web application framework
-- **MongoDB** with **Mongoose** - Database and ODM
-- **CORS** - Cross-origin resource sharing
-- **dotenv** - Environment variable management
-
-### **Development Tools**
-- **React Scripts** - Development and build tools
-- **Nodemon** - Development server auto-restart
-- **Testing Library** - Comprehensive testing suite
 
 ## 🎯 **Skills Showcased**
 
