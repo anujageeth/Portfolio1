@@ -1,70 +1,76 @@
-# Portfolio MERN App
+# 🌟 Personal Portfolio Website
 
-This is a portfolio web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It showcases projects, skills, and provides a contact form for inquiries.
+A modern, responsive portfolio website built with the MERN stack (MongoDB, Express.js, React.js, Node.js) that showcases my professional journey as a software developer and creative artist.
 
-## Features
+## 🚀 Features
 
-- **Responsive Design**: The application is designed to be responsive and user-friendly across devices.
-- **Dynamic Routing**: Utilizes React Router for seamless navigation between pages.
-- **Contact Form**: Users can submit inquiries through a contact form.
-- **Project Showcase**: Displays a list of projects with descriptions and links.
+### 📱 **Multi-Page Portfolio**
+- **Home Page**: Hero section with dynamic animations and project previews
+- **About Page**: Personal introduction and professional background
+- **Projects Page**: Interactive showcase of web development and software projects
+- **Skills Page**: Comprehensive display of technical and creative abilities
+- **Creative Works**: Dedicated sections for photography, videography, and graphic design
+- **Resume/CV**: Embedded PDF viewer with download functionality
+- **Contact Page**: Functional contact form with backend integration
 
-## Technologies Used
+### 🎨 **Creative Portfolio Sections**
+- **Photography Gallery**: Curated collection of landscape, portrait, street, and nature photography
+- **Video Editing Showcase**: Professional video content including cinematic pieces, short films, and social media content
+- **Graphic Design**: UI/UX designs and visual creative works
 
-- **Frontend**: React.js, Vite, CSS
-- **Backend**: Node.js, Express.js, MongoDB
-- **Database**: MongoDB Atlas or local MongoDB instance
+### 💻 **Technical Features**
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
+- **Dynamic Routing**: Seamless navigation using React Router
+- **Interactive UI**: 3D hover effects, smooth animations, and modern glassmorphism design
+- **Project Modals**: Detailed project views with tech stacks, features, and live/demo links
+- **Search & Filter**: Filter projects by technology and category
+- **Loading States**: Skeleton loaders for enhanced user experience
+- **Contact Integration**: Backend API for handling contact form submissions
 
-## Getting Started
+## 🛠️ **Technology Stack**
 
-### Prerequisites
+### **Frontend**
+- **React.js** - Modern UI library with hooks
+- **React Router DOM** - Client-side routing
+- **React Icons** - Comprehensive icon library
+- **React PDF** - PDF viewing capabilities
+- **Axios** - HTTP client for API requests
+- **CSS3** - Custom styling with modern features (backdrop-filter, gradients, animations)
 
-- Node.js and npm installed on your machine.
-- MongoDB instance (local or cloud).
+### **Backend**
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - Web application framework
+- **MongoDB** with **Mongoose** - Database and ODM
+- **CORS** - Cross-origin resource sharing
+- **dotenv** - Environment variable management
 
-### Installation
+### **Development Tools**
+- **React Scripts** - Development and build tools
+- **Nodemon** - Development server auto-restart
+- **Testing Library** - Comprehensive testing suite
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd portfolio-mern-app
-   ```
+## 🎯 **Skills Showcased**
 
-2. Navigate to the client directory and install dependencies:
-   ```
-   cd client
-   npm install
-   ```
+### **Programming Languages**
+- C/C++, Java, JavaScript, Python, HTML5, CSS3
 
-3. Navigate to the server directory and install dependencies:
-   ```
-   cd ../server
-   npm install
-   ```
+### **Web Development**
+- Frontend: React.js, Next.js, HTML5, CSS3
+- Backend: Node.js, Express.js, MongoDB
+- Tools: Docker, Jenkins, JIRA, Git, GitHub
 
-4. Set up environment variables:
-   - Copy `.env.example` to `.env` in both `client` and `server` directories and fill in the required values.
+### **Creative Skills**
+- **Photography**: Landscape, Portrait, Street & Travel Photography
+- **Videography**: Short Films, Cinematics, Social Media Content
+- **Video Editing**: Adobe Premiere Pro, CapCut, DaVinci Resolve
+- **Graphic Design**: Adobe Photoshop, Figma (UI/UX), Canva
 
-### Running the Application
 
-1. Start the server:
-   ```
-   cd server
-   npm start
-   ```
+## 🌐 Live Demo
+Visit the live portfolio: https://anujageeth.live
 
-2. In a new terminal, start the client:
-   ```
-   cd client
-   npm run dev
-   ```
-
-3. Open your browser and navigate to `http://localhost:3000` to view the application.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+## 📧 Contact
+For inquiries or collaborations:
+- Email: priyanjanabag@gmail.com
+- LinkedIn: https://linkedin/in/anujageeth
+- GitHub: https://github.com/anujageeth
